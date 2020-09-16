@@ -8,6 +8,7 @@ function App() {
         <div>Here will be header</div>
         <div>SideBar</div>
         <div>Main</div>
+          hi!
       </div>
   )
 }
