@@ -1,0 +1,71 @@
+
+/*--------------common------------*/
+.common {
+    display: flex;
+}
+
+/*----------sideBar--------------*/
+.sidebar {
+    width: 200px;
+    min-height: 400px;
+    border-right: 1px solid lightgrey;
+    margin-top: 5px;
+}
+.user_photo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.user_photo_img {
+    width: 199px;
+}
+.case {
+    padding: 10px ;
+}
+.case a {
+    text-decoration: none;
+    color: black;
+}
+.case_link {
+    display: flex;
+}
+.case:hover {
+    background-color: #BCE4E8;
+}
+/*-----------main----------------*/
+.main {
+    width: 800px;
+    margin-top: 5px;
+    padding: 0 10px;
+}
+.textarea_status {
+    width: 780px;
+    height: 40px;
+    padding: 10px;
+}
+.aboutMe_header {
+    font-weight: 600;
+    text-decoration: underline;
+}
+.aboutMe_content {
+    padding-left: 10px;
+}
+.postTextarea {
+    display: flex;
+    justify-content: space-between;
+}
+.post_user_photo_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+.textarea_post {
+    width: 700px;
+    height: 40px;
+    padding: 10px;
+}
+.added_posts {
+    display: flex;
+    align-items: center;
+}

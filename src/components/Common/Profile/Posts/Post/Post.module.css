@@ -1,0 +1,20 @@
+
+.postTextarea {
+    display: flex;
+    justify-content: space-between;
+}
+.post_user_photo_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+.textarea_post {
+    width: 700px;
+    height: 40px;
+    padding: 10px;
+}
+.added_posts {
+    display: flex;
+    align-items: center;
+}

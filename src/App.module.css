@@ -1,0 +1,11 @@
+/*--------------common------------*/
+.common {
+    display: flex;
+}
+
+/*-----------main----------------*/
+.main {
+    width: 800px;
+    margin-top: 5px;
+    padding: 0 10px;
+}

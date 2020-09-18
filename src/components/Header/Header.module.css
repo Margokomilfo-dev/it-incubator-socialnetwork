@@ -1,0 +1,28 @@
+
+/*-------------header----------------*/
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #b3f5e4;
+    padding: 10px;
+}
+.header_img {
+    width: 150px;
+    display: flex;
+}
+.header_content_header {
+    font-weight: 600;
+}
+.header_content_header span {
+    color: #1A8B8D;
+}
+.header_content_content span {
+    display: flex;
+    background-color: #FEDA75;
+}
+.header_input {
+    height: 30px;
+    width: 250px;
+    outline-color: #1A8B8D;
+}
