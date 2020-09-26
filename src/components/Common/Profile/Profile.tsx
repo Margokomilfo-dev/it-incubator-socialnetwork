@@ -1,16 +1,24 @@
-import UserStatus from "../../UserStatus/UserStatus";
+import UserStatus from "./UserStatus/UserStatus";
 import React from "react";
 import AboutMe from "./AboutMe/AboutMe";
 import Posts from "./Posts/Posts";
+import s from './Profile.module.css'
+import {PostsType, ProfilePageType, StateType} from "../../../redux/redux";
 
-function Profile() {
+type ProfilePropsType = {
+    profilePage: ProfilePageType
+    dispatch: (action: Object) => void
+}
+
+function Profile(props: ProfilePropsType) {
     return (
-        <div>
+        <div className={s.profile}>
             <UserStatus/>
             <AboutMe/>
             <hr/>
             <br/>
-            <Posts/>
+            <Posts profilePage={props.profilePage}
+                   dispatch = {props.dispatch}/>
         </div>
     )
 }

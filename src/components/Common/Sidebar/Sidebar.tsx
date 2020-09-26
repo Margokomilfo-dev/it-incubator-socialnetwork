@@ -11,10 +11,19 @@ function Sidebar() {
                     <img className={s.user_photo_img} src={mainPhoto} alt="user_photo"/>
                     <button className='photoButton'>Change photo</button>
                 </div>
-                <div className={s.case}><NavLink to={'/profile'} className={s.case_link} activeClassName={s.activeLink}>My profile </NavLink></div>
-                <div className={s.case}><NavLink to={'/users'} className={s.case_link} activeClassName={s.activeLink}>All users</NavLink></div>
-                <div className={s.case}><NavLink to={'/messages'} className={s.case_link} activeClassName={s.activeLink}>Messages</NavLink ></div>
-                <div className={s.case}><NavLink to={'/about'} className={s.case_link} activeClassName={s.activeLink}>About Project</NavLink></div>
+
+                <div className={s.case}>
+                    <NavLink to={'/profile'} className={s.case_link}
+                             activeClassName={s.activeLink}>My profile </NavLink></div>
+                <div className={s.case}>
+                    <NavLink to={'/users'} className={s.case_link}
+                             activeClassName={s.activeLink}>All users</NavLink></div>
+                <div className={s.case}>
+                    <NavLink to={'/dialogs'} className={s.case_link}
+                             activeClassName={s.activeLink}>Messages</NavLink ></div>
+                <div className={s.case}>
+                    <NavLink to={'/about'} className={s.case_link}
+                             activeClassName={s.activeLink}>About Project</NavLink></div>
             </div>
         </div>
     )

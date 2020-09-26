@@ -1,22 +1,38 @@
-import s from "./Posts.module.css";
-import React from "react";
-import Post from "./Post/Post";
+import s from "./Posts.module.css"
+import React from "react"
+import Post from "./Post/Post"
+import {addPostAC, changeNewPostTextAC, ProfilePageType} from "../../../../redux/redux"
 
-type PostsType = {
-    likesCount: number
-    content: string | number
+
+type PostsPropsType = {
+    profilePage: ProfilePageType
+    dispatch: (action: Object) => void
 }
 
-function Posts(){
+
+function Posts(props: PostsPropsType) {
+
+    const newPostElement = React.createRef<HTMLTextAreaElement>()
+
+    let addPost = () => {
+        props.dispatch(addPostAC())
+    }
+    let onChangeNewPostText = () => {
+        // @ts-ignore
+        props.dispatch(changeNewPostTextAC(newPostElement.current.value))
+    }
+
     return (
         <div className={s.posts}>
             <div className={s.postTextarea}>
-                <textarea className={s.textarea_post}>New post</textarea>
-                <button className='postBtn'>add</button>
+                <textarea ref={newPostElement} className={s.textarea_post}
+                          value={props.profilePage.newPostText}
+                          onChange={onChangeNewPostText}>New post</textarea>
+                <button className='postBtn' onClick={addPost}>add</button>
             </div>
-            <Post content = 'Hello! This is my first post!' likesCount= {25}/>
-            <Post content = 'Hello! This is my second post!' likesCount = {15}/>
-            <Post content = 'Hello! This is my third post!' likesCount = {20}/>
+            {
+                props.profilePage.posts.map(p => <Post content={p.content} likesCount={p.likesCount}/>)
+            }
         </div>
     )
 }

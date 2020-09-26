@@ -2,17 +2,18 @@
 /*---------status------------------*/
 .status_content {
     font-size: 12px;
-    color: white;
+    color: black;
 }
 .online {
-    background-color: #b3f5e4;
+    background-color: #e6faf2;
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px 10px 0;
+
 }
 .offline {
     background-color: lightgray;
     display: flex;
     justify-content: flex-end;
-    padding: 10px 10px 10px 0;
+    padding: 10px 20px 10px 0;
 }

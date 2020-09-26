@@ -9,21 +9,29 @@ import Users from "./components/Common/Sidebar/Users/Users"
 import Messages from "./components/Common/Sidebar/Messages/Messages"
 import About from "./components/Common/Sidebar/About/About"
 import Profile from "./components/Common/Profile/Profile"
+import {StoreType} from "./redux/redux";
 
-function App() {
+type AppPropsType = {
+    store: StoreType
+    dispatch: (action: Object) => void
+}
+
+function App(props: AppPropsType) {
     return (
         <BrowserRouter>
             <div className='app'>
                 <Header/>
                 <Status/>
                 <div className={s.common}>
-                    <Sidebar />
+                    <Sidebar/>
                     <div className={s.main}>
-                        <Route component={Profile} path={'/profile'}/>
-                        <Route component={Users} path={'/users'}/>
-                        <Route component={Messages} path={'/messages'}/>
-                        <Route component={About} path={'/about'}/>
-                    </div>>
+                        <Route path={'/profile'} render={() =>
+                            <Profile profilePage = {props.store._state.profilePage} dispatch = {props.dispatch}/>}/>
+                        <Route path={'/users'} render={() => <Users/>}/>
+                        <Route path={'/dialogs'} render={() =>
+                            <Messages messagePage = {props.store._state.messagePage} dispatch = {props.dispatch}/>}/>
+                        <Route path={'/about'} render={() => <About/>}/>
+                    </div>
                 </div>
             </div>
         </BrowserRouter>

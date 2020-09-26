@@ -6,6 +6,6 @@
 /*-----------main----------------*/
 .main {
     width: 800px;
+    min-height: 600px;
     margin-top: 5px;
-    padding: 0 10px;
 }

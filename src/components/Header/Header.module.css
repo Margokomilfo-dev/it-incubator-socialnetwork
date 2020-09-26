@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #b3f5e4;
+    border-bottom: 2px solid #b3f5e4;
     padding: 10px;
 }
 .header_img {
