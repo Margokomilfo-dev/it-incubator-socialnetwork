@@ -5,18 +5,15 @@ import s from './Profile.module.css'
 import {ProfilePageType} from "../../../redux/profileReduser";
 import PostsContainer from "./Posts/PostsContainer";
 
-type ProfilePropsType = {
-    store: any
-}
 
-function Profile(props: ProfilePropsType) {
+function Profile() {
     return (
         <div className={s.profile}>
             <UserStatus/>
             <AboutMe/>
             <hr/>
             <br/>
-            <PostsContainer store={props.store}/>
+            <PostsContainer />
         </div>
     )
 }

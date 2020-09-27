@@ -15,7 +15,6 @@ type AppPropsType = {
 }
 
 function App(props: AppPropsType) {
-    debugger
     return (
         <BrowserRouter>
             <div className='app'>
@@ -25,7 +24,7 @@ function App(props: AppPropsType) {
                     <Sidebar/>
                     <div className={s.main}>
                         <Route path={'/profile'} render={() =>
-                            <Profile store={props.store}/>}/>
+                            <Profile />}/>
                         <Route path={'/users'} render={() => <Users/>}/>
                         <Route path={'/dialogs'} render={() =>
                             <MessagesContainer store={props.store}/>}/>

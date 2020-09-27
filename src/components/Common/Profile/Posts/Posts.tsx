@@ -12,7 +12,7 @@ type PostsPropsType = {
 
 
 function Posts(props: PostsPropsType) {
-
+    debugger
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     let onAddPost = () => {
