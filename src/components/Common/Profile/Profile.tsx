@@ -1,13 +1,12 @@
 import UserStatus from "./UserStatus/UserStatus";
 import React from "react";
 import AboutMe from "./AboutMe/AboutMe";
-import Posts from "./Posts/Posts";
 import s from './Profile.module.css'
 import {ProfilePageType} from "../../../redux/profileReduser";
+import PostsContainer from "./Posts/PostsContainer";
 
 type ProfilePropsType = {
-    profilePage: ProfilePageType
-    dispatch: (action: Object) => void
+    store: any
 }
 
 function Profile(props: ProfilePropsType) {
@@ -17,8 +16,7 @@ function Profile(props: ProfilePropsType) {
             <AboutMe/>
             <hr/>
             <br/>
-            <Posts profilePage={props.profilePage}
-                   dispatch = {props.dispatch}/>
+            <PostsContainer store={props.store}/>
         </div>
     )
 }

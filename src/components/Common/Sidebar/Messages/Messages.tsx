@@ -7,21 +7,21 @@ import {addMessAC, changeNewMessTextAC, messagePageType} from "../../../../redux
 
 type MessagesPropsType = {
     messagePage: messagePageType
-    dispatch: (action: Object) => void
+    addMess: Function
+    onChangeNewPostText: Function
 }
 
 function Messages(props:MessagesPropsType) {
+
     const newMessElement = React.createRef<HTMLTextAreaElement>()
-    let addMess = () => {
-        // @ts-ignore
-        let text= newMessElement.current.value
-        //props.addMessage(text)
-        props.dispatch(addMessAC())
+
+    let onAddMess = () => {
+        props.addMess()
+
     }
-    let onChangeNewPostText = () => {
+    let changeNewPostText = () => {
         // @ts-ignore
-        //props.changeNewMessageText(newMessElement.current.value)
-        props.dispatch(changeNewMessTextAC(newMessElement.current.value))
+        props.onChangeNewPostText(newMessElement.current.value)
     }
     return (
 
@@ -40,9 +40,9 @@ function Messages(props:MessagesPropsType) {
                     <div className={s.newMessArea}>
                         <div className={s.messTextarea}>
                              <textarea className={s.textarea_message} ref={newMessElement}
-                                       onChange={onChangeNewPostText}
+                                       onChange={changeNewPostText}
                                        value ={props.messagePage.newMessageText}> </textarea>
-                            <button className='postBtn' onClick={addMess}>click</button>
+                            <button className='postBtn' onClick={onAddMess}>click</button>
                         </div>
 
                     </div>

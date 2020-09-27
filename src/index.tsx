@@ -8,15 +8,12 @@ export let rerenderIntareTree = (state: any) => {
 
 debugger
     ReactDOM.render(
-        // @ts-ignore
-        <App state={state} dispatch = {store.dispatch.bind(store)} />,
+        <App store={store} />,
         document.getElementById('root')
     );
 }
 
-// @ts-ignore
 rerenderIntareTree(store.getState())
-
 store.subscribe(() => {
     let state = store.getState();
     rerenderIntareTree(state)
