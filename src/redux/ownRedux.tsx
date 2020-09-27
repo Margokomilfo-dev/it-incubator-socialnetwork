@@ -105,7 +105,6 @@ export let store: StoreType = {
         }
     }
 
-
 }
 
 export let addPostAC = () =>  ({type: "ADD_POST"})

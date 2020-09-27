@@ -1,7 +1,7 @@
 import s from "./Posts.module.css"
 import React from "react"
 import Post from "./Post/Post"
-import {addPostAC, changeNewPostTextAC, ProfilePageType} from "../../../../redux/redux"
+import {addPostAC, changeNewPostTextAC, ProfilePageType} from "../../../../redux/profileReduser";
 
 
 type PostsPropsType = {

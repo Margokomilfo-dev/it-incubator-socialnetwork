@@ -3,7 +3,7 @@ import React from "react";
 import AboutMe from "./AboutMe/AboutMe";
 import Posts from "./Posts/Posts";
 import s from './Profile.module.css'
-import {PostsType, ProfilePageType, StateType} from "../../../redux/redux";
+import {ProfilePageType} from "../../../redux/profileReduser";
 
 type ProfilePropsType = {
     profilePage: ProfilePageType

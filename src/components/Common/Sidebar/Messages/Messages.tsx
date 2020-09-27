@@ -2,7 +2,7 @@ import React from "react"
 import s from './Messages.module.css'
 import UserDialog from "./UserDialog/UserDialog";
 import Message from "./Message/Message";
-import {addMessAC, changeNewMessTextAC, messagePageType} from "../../../../redux/redux";
+import {addMessAC, changeNewMessTextAC, messagePageType} from "../../../../redux/messagesReduser.";
 
 
 type MessagesPropsType = {
