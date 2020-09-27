@@ -1,21 +1,27 @@
 import React from "react"
-import {addMessAC, changeNewMessTextAC, messagePageType} from "../../../../redux/messagesReduser."
+import {addMessAC, changeNewMessTextAC} from "../../../../redux/messagesReduser."
 import Messages from "./Messages";
+import {connect} from "react-redux";
 
-type MessagesContainer = {
-    store: any
+
+let mapStateToProps = (state: any) => {
+    return {
+        messagePage: state.messagePage
+    }
 }
 
-function MessagesContainer(props:MessagesContainer) {
-
-    let addMess = () => {
-        props.store.dispatch(addMessAC())
+let mapDispatchToProps = (dispatch: any) => {
+    return {
+        addMess: () => {
+            dispatch(addMessAC())
+        },
+        onChangeNewPostText: (value: string) => {
+            dispatch(changeNewMessTextAC(value))
+        }
     }
-    let onChangeNewPostText = (value: string) => {
-        props.store.dispatch(changeNewMessTextAC(value))
-    }
-    return <Messages addMess={addMess} onChangeNewPostText={onChangeNewPostText} messagePage={props.store.getState().messagePage}/>
 }
 
+
+const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)
 
 export default MessagesContainer

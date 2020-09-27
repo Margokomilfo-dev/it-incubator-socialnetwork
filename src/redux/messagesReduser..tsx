@@ -38,22 +38,22 @@ let initialState: messagePageType = {
 let messagesReduser = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_MESS:
-            let newObj = {
-                id: 8,
-                message: state.newMessageText,
+            return {
+                ...state,
+                messages: [...state.messages, {id: 8, message: state.newMessageText}],
+                newMessageText: ''
             }
-            state.messages.push(newObj)
-            state.newMessageText = ''
-            return state
         case CHANGE_NEW_MESS_TEXT:
-            state.newMessageText = action.text
-            return state
+            return {
+                ...state,
+                newMessageText: action.text
+            }
         default:
             return state
     }
 }
 
 export let addMessAC = () => ({type: "ADD_MESS"})
-export let changeNewMessTextAC = (text: string) => ({type: "CHANGE_NEW_MESS_TEXT", text: text })
+export let changeNewMessTextAC = (text: string) => ({type: "CHANGE_NEW_MESS_TEXT", text: text})
 
 export default messagesReduser

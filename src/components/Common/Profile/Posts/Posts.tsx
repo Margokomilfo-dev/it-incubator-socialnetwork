@@ -3,18 +3,14 @@ import React from "react"
 import Post from "./Post/Post"
 import {ProfilePageType} from "../../../../redux/profileReduser";
 
-
 type PostsPropsType = {
     profilePage: ProfilePageType
     addPost: () => void
     onChangeNewPostText: (value: string) => void
 }
 
-
 function Posts(props: PostsPropsType) {
-    debugger
     const newPostElement = React.createRef<HTMLTextAreaElement>()
-
     let onAddPost = () => {
         props.addPost()
     }
@@ -22,7 +18,6 @@ function Posts(props: PostsPropsType) {
         // @ts-ignore
         props.onChangeNewPostText(newPostElement.current.value)
     }
-
     return (
         <div className={s.posts}>
             <div className={s.postTextarea}>

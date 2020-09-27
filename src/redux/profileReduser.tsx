@@ -11,34 +11,34 @@ export type ProfilePageType = {
 }
 
 let initialState: ProfilePageType = {
-        posts: [
-            {content: 'Hello! This is my first post!', likesCount: 25},
-            {content: 'Hello! This is my second post!', likesCount: 115},
-            {content: 'Hello! This is my third post!', likesCount: 15},
-            {content: 'HI!', likesCount: 0},
-        ] as Array<PostsType>,
-        newPostText: ''
+    posts: [
+        {content: 'Hello! This is my first post!', likesCount: 25},
+        {content: 'Hello! This is my second post!', likesCount: 115},
+        {content: 'Hello! This is my third post!', likesCount: 15},
+        {content: 'HI!', likesCount: 0},
+    ] as Array<PostsType>,
+    newPostText: ''
 }
 
 let profileReduser = (state = initialState, action: any) => {
     switch (action.type) {
         case ADD_POST:
-            let newObj = {
-                content: state.newPostText,
-                likesCount: 10
+            return {
+                ...state,
+                posts: [...state.posts, {content: state.newPostText, likesCount: 10}],
+                newPostText: ''
             }
-            state.posts.push(newObj)
-            state.newPostText = ''
-            return state
         case CHANGE_NEW_POST_TEXT:
-            state.newPostText = action.text
-            return state
+            return {
+                ...state,
+                newPostText: action.text
+            }
         default:
             return state
     }
 }
 
-export let addPostAC = () =>  ({type: "ADD_POST"})
-export let changeNewPostTextAC = (text: string) => ({type: "CHANGE_NEW_POST_TEXT", text: text })
+export let addPostAC = () => ({type: "ADD_POST"})
+export let changeNewPostTextAC = (text: string) => ({type: "CHANGE_NEW_POST_TEXT", text: text})
 
 export default profileReduser

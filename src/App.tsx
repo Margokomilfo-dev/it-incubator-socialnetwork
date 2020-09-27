@@ -23,11 +23,9 @@ function App(props: AppPropsType) {
                 <div className={s.common}>
                     <Sidebar/>
                     <div className={s.main}>
-                        <Route path={'/profile'} render={() =>
-                            <Profile />}/>
+                        <Route path={'/profile'} render={() => <Profile/>}/>
                         <Route path={'/users'} render={() => <Users/>}/>
-                        <Route path={'/dialogs'} render={() =>
-                            <MessagesContainer store={props.store}/>}/>
+                        <Route path={'/dialogs'} render={() => <MessagesContainer/>}/>
                         <Route path={'/about'} render={() => <About/>}/>
                     </div>
                 </div>
