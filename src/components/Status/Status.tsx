@@ -1,5 +1,5 @@
-import s from "./Status.module.css";
-import React from "react";
+import s from "./Status.module.css"
+import React from "react"
 
 function Status() {
     return (

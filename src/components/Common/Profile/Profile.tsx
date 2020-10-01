@@ -1,9 +1,8 @@
-import UserStatus from "./UserStatus/UserStatus";
-import React from "react";
-import AboutMe from "./AboutMe/AboutMe";
+import UserStatus from "./UserStatus/UserStatus"
+import React from "react"
+import AboutMe from "./AboutMe/AboutMe"
 import s from './Profile.module.css'
-import {ProfilePageType} from "../../../redux/profileReduser";
-import PostsContainer from "./Posts/PostsContainer";
+import PostsContainer from "./Posts/PostsContainer"
 
 
 function Profile() {

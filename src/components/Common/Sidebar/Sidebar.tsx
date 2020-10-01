@@ -1,7 +1,7 @@
-import s from "./Sidebar.module.css";
-import React from "react";
+import s from "./Sidebar.module.css"
+import React from "react"
 import mainPhoto from "../../../img/mainPhoto.jpg"
-import {NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom"
 
 function Sidebar() {
     return (

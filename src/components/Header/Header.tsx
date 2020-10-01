@@ -1,6 +1,6 @@
-import s from "./Header.module.css";
-import logo from "../../img/logo-job.png";
-import React from "react";
+import s from "./Header.module.css"
+import logo from "../../img/logo-job.png"
+import React from "react"
 
 function Header() {
     return (

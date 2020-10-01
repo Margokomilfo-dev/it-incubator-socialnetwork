@@ -1,0 +1,21 @@
+.users {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+    width: 140px;
+    margin: 5px;
+    border: 1px solid gray;
+
+}
+.photo img {
+    width: 100px;
+}
+.src {
+    width: 180px;
+}

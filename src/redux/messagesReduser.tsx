@@ -1,38 +1,38 @@
+import {v1} from "uuid";
+
 const ADD_MESS = 'ADD_MESS'
 const CHANGE_NEW_MESS_TEXT = 'CHANGE_NEW_MESS_TEXT'
 
 export type DialogsType = {
-    id: number
+    id: string
     name: string
 }
 export type MessagesType = {
-    id: number
+    id: string
     message: string
 }
 export type messagePageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
-    newMessageText: string
 }
 
 let initialState: messagePageType = {
     dialogs: [
-        {id: 1, name: 'Leo'},
-        {id: 2, name: 'Mia'},
-        {id: 3, name: 'Vova'},
-        {id: 4, name: 'Leo'},
-        {id: 5, name: 'Mia'},
-        {id: 6, name: 'Vova'}
+        {id: v1(), name: 'Leo'},
+        {id: v1(), name: 'Mia'},
+        {id: v1(), name: 'Vova'},
+        {id: v1(), name: 'Leo'},
+        {id: v1(), name: 'Mia'},
+        {id: v1(), name: 'Vova'}
     ] as Array<DialogsType>,
     messages: [
-        {id: 1, message: 'Hello!! YO'},
-        {id: 2, message: 'How is it going??!'},
-        {id: 3, message: 'Yo!!'},
-        {id: 4, message: 'YO!!'},
-        {id: 5, message: 'Hello!!'},
-        {id: 6, message: 'Hi!!'}
-    ] as Array<MessagesType>,
-    newMessageText: ''
+        {id: v1(), message: 'Hello!! YO'},
+        {id: v1(), message: 'How is it going??!'},
+        {id: v1(), message: 'Yo!!'},
+        {id: v1(), message: 'YO!!'},
+        {id: v1(), message: 'Hello!!'},
+        {id: v1(), message: 'Hi!!'}
+    ] as Array<MessagesType>
 }
 
 let messagesReduser = (state = initialState, action: any) => {
@@ -40,7 +40,7 @@ let messagesReduser = (state = initialState, action: any) => {
         case ADD_MESS:
             return {
                 ...state,
-                messages: [...state.messages, {id: 8, message: state.newMessageText}],
+                messages: [...state.messages, {id: 8, message: action.value}],
                 newMessageText: ''
             }
         case CHANGE_NEW_MESS_TEXT:
@@ -53,7 +53,7 @@ let messagesReduser = (state = initialState, action: any) => {
     }
 }
 
-export let addMessAC = () => ({type: "ADD_MESS"})
-export let changeNewMessTextAC = (text: string) => ({type: "CHANGE_NEW_MESS_TEXT", text: text})
+export let addMessAC = (value: string) => ({type: "ADD_MESS" , value})
+export let changeNewMessTextAC = (text: string) => ({type: "CHANGE_NEW_MESS_TEXT", text})
 
 export default messagesReduser

@@ -4,7 +4,7 @@ import s from "../Messages.module.css";
 
 
 type UserDialogPropsType = {
-    id: number
+    id: string
     name: string
 }
 function UserDialog(props:UserDialogPropsType) {

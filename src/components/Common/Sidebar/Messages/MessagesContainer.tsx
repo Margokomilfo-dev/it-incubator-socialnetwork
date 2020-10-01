@@ -1,5 +1,5 @@
 import React from "react"
-import {addMessAC, changeNewMessTextAC} from "../../../../redux/messagesReduser."
+import {addMessAC, changeNewMessTextAC} from "../../../../redux/messagesReduser"
 import Messages from "./Messages";
 import {connect} from "react-redux";
 
@@ -12,8 +12,8 @@ let mapStateToProps = (state: any) => {
 
 let mapDispatchToProps = (dispatch: any) => {
     return {
-        addMess: () => {
-            dispatch(addMessAC())
+        addMess: (value: string) => {
+            dispatch(addMessAC(value))
         },
         onChangeNewPostText: (value: string) => {
             dispatch(changeNewMessTextAC(value))

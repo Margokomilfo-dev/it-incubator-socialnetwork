@@ -1,33 +1,36 @@
 import s from "./Posts.module.css"
-import React from "react"
+import React, {ChangeEvent, useState} from "react"
 import Post from "./Post/Post"
-import {ProfilePageType} from "../../../../redux/profileReduser";
+import {ProfilePageType} from "../../../../redux/profileReduser"
 
 type PostsPropsType = {
     profilePage: ProfilePageType
-    addPost: () => void
+    addPost: (value: string) => void
     onChangeNewPostText: (value: string) => void
 }
 
 function Posts(props: PostsPropsType) {
+    let [value, setValue] = useState<string>('')
+
     const newPostElement = React.createRef<HTMLTextAreaElement>()
-    let onAddPost = () => {
-        props.addPost()
+
+    let onAddPost = (value: string) => {
+        props.addPost(value)
+        setValue('')
     }
-    let changeNewPostText = () => {
-        // @ts-ignore
-        props.onChangeNewPostText(newPostElement.current.value)
+    let changeNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setValue(e.currentTarget.value)
     }
     return (
         <div className={s.posts}>
             <div className={s.postTextarea}>
                 <textarea ref={newPostElement} className={s.textarea_post}
-                          value={props.profilePage.newPostText}
+                          value={value}
                           onChange={changeNewPostText}>New post</textarea>
-                <button className='postBtn' onClick={onAddPost}>add</button>
+                <button className='postBtn' onClick={() => {onAddPost(value)}}>add</button>
             </div>
             {
-                props.profilePage.posts.map(p => <Post content={p.content} likesCount={p.likesCount}/>)
+                props.profilePage.posts.map(p => <Post content={p.content} likesCount={p.likesCount} key={p.id}/>)
             }
         </div>
     )
