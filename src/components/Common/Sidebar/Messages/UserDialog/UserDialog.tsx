@@ -1,6 +1,6 @@
 import React from 'react'
-import {NavLink} from "react-router-dom";
-import s from "../Messages.module.css";
+import {NavLink} from "react-router-dom"
+import s from "../Messages.module.css"
 
 
 type UserDialogPropsType = {

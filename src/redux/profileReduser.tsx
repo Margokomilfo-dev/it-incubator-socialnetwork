@@ -1,6 +1,4 @@
-import {act} from "react-dom/test-utils";
-import { v1 } from "uuid";
-
+import { v1 } from "uuid"
 const ADD_POST = 'ADD_POST'
 const CHANGE_NEW_POST_TEXT = 'CHANGE_NEW_POST_TEXT'
 

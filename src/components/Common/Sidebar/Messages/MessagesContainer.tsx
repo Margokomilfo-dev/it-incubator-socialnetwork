@@ -1,7 +1,7 @@
 import React from "react"
 import {addMessAC, changeNewMessTextAC} from "../../../../redux/messagesReduser"
-import Messages from "./Messages";
-import {connect} from "react-redux";
+import Messages from "./Messages"
+import {connect} from "react-redux"
 
 
 let mapStateToProps = (state: any) => {
