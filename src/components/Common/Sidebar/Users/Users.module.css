@@ -19,3 +19,23 @@
 .src {
     width: 180px;
 }
+.pagination {
+
+}
+.paginationPages{
+
+}
+.currentPage{
+    font-weight: 800;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    display: inline-block;
+    padding: 5px;
+    color: #1A8B8D;
+    border: 1px solid #1A8B8D;
+    border-radius: 7px;
+}
+.uncurrenPage {
+    display: inline-block;
+    padding: 5px;
+}
