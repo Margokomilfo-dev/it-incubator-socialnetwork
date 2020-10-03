@@ -1,17 +1,32 @@
+<<<<<<< HEAD
 import {UserType} from "../../../../redux/allUsersReduser";
 import React, {useState} from "react";
 import axios from "axios";
 import s from "../Users/Users.module.css";
+=======
+import {UserType} from "../../../../redux/allUsersReduser"
+import React from "react"
+import axios from "axios"
+import s from "../Users/Users.module.css"
+>>>>>>> master
 
 type PaginationPropsType = {
     totalCountPageArr: Array<number>
     setUsers: (users: Array<UserType>) => void
+<<<<<<< HEAD
     setCurrentPage: (page: number) => void
     currentPage: number
     totalCountPage: number
 }
 
 const Pagination: React.FC<PaginationPropsType> = ({totalCountPageArr, setUsers, setCurrentPage, currentPage, totalCountPage}) => {
+=======
+    setCurrentPage: (page:number) => void
+    currentPage: number
+}
+
+const Pagination: React.FC<PaginationPropsType> = ({totalCountPageArr, setUsers, setCurrentPage, currentPage}) => {
+>>>>>>> master
 
     let onChangeCurrentPage = (page: number) => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=24&page=${page}`).then(response => {
@@ -20,6 +35,7 @@ const Pagination: React.FC<PaginationPropsType> = ({totalCountPageArr, setUsers,
         setCurrentPage(page)
     }
 
+<<<<<<< HEAD
     let portionSize = 20
     let portionCount = Math.ceil(totalCountPage/portionSize)
     let [portionNumber, setPortionNumber] = useState<number>(1)
@@ -40,8 +56,25 @@ const Pagination: React.FC<PaginationPropsType> = ({totalCountPageArr, setUsers,
                 })}
             {portionCount > portionNumber && <button onClick={onNextBtn}>NEXT</button>}
         </>
+=======
+    return (
+        <div className={s.pagination}>
+            {
+                totalCountPageArr.map(p => {
+                    // @ts-ignore
+                    return <span className={currentPage === p ? s.currentPage : s.uncurrenPage} onClick={() => {
+                        onChangeCurrentPage(p)
+                    }}>{p}</span>
+                })
+            }
+        </div>
+>>>>>>> master
     )
 
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 export default Pagination

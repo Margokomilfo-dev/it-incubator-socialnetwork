@@ -2,8 +2,13 @@ import React, {useState} from "react"
 import {UserType} from "../../../../redux/allUsersReduser"
 import s from './Users.module.css'
 import axios from 'axios'
+<<<<<<< HEAD
 import Pagination from "../Pagination/Pagination";
 import User from "./User";
+=======
+import Pagination from "../Pagination/Pagination"
+import User from "./User"
+>>>>>>> master
 
 type UsersPropsType = {
     follow: (id: string) => void
@@ -29,7 +34,7 @@ const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users, set
     let totalCountPage = Math.ceil(totalCountUsers / 15)
 
     let totalCountPageArr = []
-    for (let i = 1; i <= totalCountPage; i++) {
+    for (let i = 1; i <= totalCountPage - 300; i++) {
         totalCountPageArr.push(i)
     }
 
@@ -57,4 +62,8 @@ const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users, set
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 export default Users

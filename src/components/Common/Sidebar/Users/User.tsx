@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React from "react";
 import s from "./Users.module.css";
 import noPhoto from "../../../../img/noPhoto.png";
+=======
+import React from "react"
+import s from "./Users.module.css"
+import noPhoto from "../../../../img/noPhoto.png"
+>>>>>>> master
 
 type UserPropsType = {
     name: string
