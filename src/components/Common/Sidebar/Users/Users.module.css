@@ -1,4 +1,4 @@
-.usersStyle {
+.usersStyle{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,11 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-<<<<<<< HEAD
-    height: 160px;
-=======
     height:160px;
->>>>>>> master
     width: 120px;
     margin: 5px;
     border: 1px solid gray;
@@ -29,7 +25,7 @@
     width: 180px;
 }
 .pagination {
-    margin: 5px
+    margin: 5px;
 }
 .paginationPages{
 

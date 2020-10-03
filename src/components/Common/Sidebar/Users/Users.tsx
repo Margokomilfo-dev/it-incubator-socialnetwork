@@ -2,13 +2,8 @@ import React, {useState} from "react"
 import {UserType} from "../../../../redux/allUsersReduser"
 import s from './Users.module.css'
 import axios from 'axios'
-<<<<<<< HEAD
-import Pagination from "../Pagination/Pagination";
-import User from "./User";
-=======
 import Pagination from "../Pagination/Pagination"
 import User from "./User"
->>>>>>> master
 
 type UsersPropsType = {
     follow: (id: string) => void
@@ -18,6 +13,7 @@ type UsersPropsType = {
     setUsersCount: (totalCount: number) => void
     totalCountUsers: number
 }
+
 
 const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users, setUsersCount, totalCountUsers}) => {
 
@@ -52,9 +48,7 @@ const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users, set
                                      followed={u.followed}
                                      follow={follow}
                                      unfollow={unfollow}
-                                     id={u.id}/>
-                                     )
-                }
+                                     id={u.id}/>)}
             </div>
         </div>
 
@@ -62,8 +56,5 @@ const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users, set
 }
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 export default Users
