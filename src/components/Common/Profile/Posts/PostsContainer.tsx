@@ -1,4 +1,4 @@
-import {addPostAC, changeNewPostTextAC} from "../../../../redux/profileReduser"
+import {addPost} from "../../../../redux/profileReduser"
 import Posts from "./Posts"
 import {connect} from "react-redux"
 
@@ -9,16 +9,6 @@ let mapStateToProps = (state: any) => {
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
-    return {
-        addPost: (value: string) => {
-            dispatch(addPostAC(value))
-        },
-        onChangeNewPostText: (value: string) => {
-            dispatch(changeNewPostTextAC(value))
-        }
-    }
-}
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
+const PostsContainer = connect(mapStateToProps, {addPost})(Posts)
 
 export default PostsContainer

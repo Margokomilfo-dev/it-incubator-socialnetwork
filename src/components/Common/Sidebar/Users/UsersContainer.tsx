@@ -1,7 +1,7 @@
 import React from "react"
 import {connect} from "react-redux";
 import Users from "./Users";
-import {followAC, setUsersAC, setUsersCountAC, unfollowAC, UserType} from "../../../../redux/allUsersReduser"
+import {follow, setUsers, setUsersCount, unfollow, UserType} from "../../../../redux/allUsersReduser"
 
 
 let mapStateToProps = (state: any) => {
@@ -11,19 +11,4 @@ let mapStateToProps = (state: any) => {
     })
 }
 
-let mapDispatchToProps = (dispatch: any) => ({
-    follow: (id: string) => {
-        dispatch(followAC(id))
-    },
-    unfollow: (id: string) => {
-        dispatch(unfollowAC(id))
-    },
-    setUsers: (users: Array<UserType>) => {
-        dispatch(setUsersAC(users))
-    },
-    setUsersCount: (totalCount: number) => {
-        dispatch(setUsersCountAC(totalCount))
-    }
-})
-
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+export const UsersContainer = connect(mapStateToProps, {follow, unfollow, setUsers, setUsersCount})(Users)

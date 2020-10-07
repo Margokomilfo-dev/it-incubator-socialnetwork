@@ -3,15 +3,12 @@ const UNFOLLOW = 'UNFOLLOW'
 const SETUSERS = 'SETUSERS'
 const SETUSERSCOUNT = 'SETUSERSCOUNT'
 
-
-
 export type AllUsersPageType = {
     users: Array<UserType>
     totalCountUsers: number
     error: null | string
 
 }
-
 export type UserType = {
     name: string
     id: string
@@ -23,23 +20,24 @@ export type UserType = {
     status: null | string
     followed: boolean
 }
+
 let initialState: AllUsersPageType = {
     users: [] as Array<UserType>,
     totalCountUsers: 0,
     error: null
 }
 
-let allUsersReduser = (state = initialState, action: any) => {
+let allUsersReduser = (state = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case FOLLOW:
             debugger
             return {
                 ...state,
                 users: state.users.map(u => {
-                   if (u.id === action.userId) {
-                       return {...u, followed: false}
-                   }
-                   return u
+                    if (u.id === action.userId) {
+                        return {...u, followed: false}
+                    }
+                    return u
                 })
             }
         case UNFOLLOW:
@@ -54,7 +52,7 @@ let allUsersReduser = (state = initialState, action: any) => {
                 })
             }
         case SETUSERS:
-            return{
+            return {
                 ...state,
                 users: action.users
             }
@@ -67,11 +65,16 @@ let allUsersReduser = (state = initialState, action: any) => {
             return state
     }
 }
+export type ActionsTypes =
+    ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setUsersCount>
 
-export let followAC = (id: string) => ({type: "FOLLOW", userId: id})
-export let unfollowAC = (id: string) => ({type: "UNFOLLOW", userId: id})
-export let setUsersAC = (users: Array<UserType>) => ({type: "SETUSERS", users})
-export let setUsersCountAC = (totalCountUsers: number) => ({type: "SETUSERSCOUNT", totalCountUsers})
+export const follow = (id: string) => ({type: "FOLLOW", userId: id} as const)
+export const unfollow = (id: string) => ({type: "UNFOLLOW", userId: id} as const)
+export const setUsers = (users: Array<UserType>) => ({type: "SETUSERS", users} as const)
+export const setUsersCount = (totalCountUsers: number) => ({type: "SETUSERSCOUNT", totalCountUsers} as const)
 
 
 export default allUsersReduser

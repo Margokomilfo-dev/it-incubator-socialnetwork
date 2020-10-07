@@ -9,9 +9,11 @@ type PaginationPropsType = {
     setCurrentPage: (page:number) => void
     currentPage: number
     totalCountPage: number
+    isFetching: boolean
+    setIsFetching: (value: boolean) => void
 }
 
-const Pagination: React.FC<PaginationPropsType> = ({totalCountPageArr, setUsers, setCurrentPage, currentPage, totalCountPage}) => {
+const Pagination: React.FC<PaginationPropsType> = ({totalCountPageArr, setUsers, setCurrentPage, currentPage, totalCountPage, isFetching, setIsFetching}) => {
 
     let portionSize = 20
     let portionCount = Math.ceil(totalCountPage/portionSize)
@@ -20,7 +22,10 @@ const Pagination: React.FC<PaginationPropsType> = ({totalCountPageArr, setUsers,
     let rightPortionPageNumber = portionNumber * portionSize
 
     let onChangeCurrentPage = (page: number) => {
+
+        //setIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=24&page=${page}`).then(response => {
+            setIsFetching(false)
             setUsers(response.data.items)
         })
         setCurrentPage(page)

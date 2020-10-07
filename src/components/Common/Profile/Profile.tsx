@@ -3,17 +3,32 @@ import React from "react"
 import AboutMe from "./AboutMe/AboutMe"
 import s from './Profile.module.css'
 import PostsContainer from "./Posts/PostsContainer"
+import {ProfileType, setProfile} from "../../../redux/profileReduser"
+import Preloader from "../Preloader/Preloader"
 
+type ProfileProps = {
+    profile: ProfileType | null
+}
 
-function Profile() {
+let Profile = (props:ProfileProps) => {
+
     return (
+        props.profile === null ? <Preloader/> :
         <div className={s.profile}>
-            <UserStatus/>
-            <AboutMe/>
-            <hr/>
-            <br/>
+            <div  className={s.profileTopBlock}>
+                <div className={s.profilePhoto}>
+                    <img src={props.profile.photos.large} alt=""/>
+                    <button className='photoButton'>Change photo</button>
+                </div>
+                <div  className={s.profileInfo}>
+                    <UserStatus/>
+                    <AboutMe  profile = {props.profile}/>
+                </div>
+            </div>
+
             <PostsContainer />
         </div>
     )
 }
+
 export default Profile

@@ -1,4 +1,4 @@
-import {v1} from "uuid";
+import {v1} from "uuid"
 
 const ADD_MESS = 'ADD_MESS'
 const CHANGE_NEW_MESS_TEXT = 'CHANGE_NEW_MESS_TEXT'
@@ -35,25 +35,19 @@ let initialState: messagePageType = {
     ] as Array<MessagesType>
 }
 
-let messagesReduser = (state = initialState, action: any) => {
+let messagesReduser = (state:messagePageType = initialState, action: ActionsType): messagePageType => {
     switch (action.type) {
         case ADD_MESS:
             return {
                 ...state,
-                messages: [...state.messages, {id: 8, message: action.value}],
-                newMessageText: ''
-            }
-        case CHANGE_NEW_MESS_TEXT:
-            return {
-                ...state,
-                newMessageText: action.text
+                messages: [...state.messages, {id: v1(), message: action.value}]
             }
         default:
             return state
     }
 }
 
-export let addMessAC = (value: string) => ({type: "ADD_MESS" , value})
-export let changeNewMessTextAC = (text: string) => ({type: "CHANGE_NEW_MESS_TEXT", text})
+export type ActionsType = ReturnType<typeof addMess>
+export let addMess = (value: string) => ({type: "ADD_MESS", value} as const)
 
 export default messagesReduser

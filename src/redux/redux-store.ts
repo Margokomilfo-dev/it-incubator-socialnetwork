@@ -10,6 +10,7 @@ let reducers = combineReducers({
 })
 let store = createStore(reducers)
 
+export type AllAppTypes = ReturnType<typeof reducers>
 // @ts-ignore
 window.store = store
 

@@ -1,6 +1,7 @@
 import React from "react"
 import s from "./Users.module.css"
 import noPhoto from "../../../../img/noPhoto.png"
+import { NavLink } from "react-router-dom"
 
 type UserPropsType = {
     name: string
@@ -8,13 +9,17 @@ type UserPropsType = {
     follow: (id: string) => void
     unfollow: (id: string) => void
     id: string
+    photos: any
 
 }
-const User: React.FC<UserPropsType> = ({name, followed, follow, unfollow, id}) => {
+const User: React.FC<UserPropsType> = ({name, followed, follow, unfollow, id, photos}) => {
     return (
         <div className={s.user}>
             <div className={s.photo}>
-                <img src={noPhoto} alt="" className={s.src}/>
+                <NavLink to={'/profile/' + id}>
+                    {!photos.small ?  <img  src={noPhoto} alt="" className={s.src}/> : <img  src={photos.small} alt="" className={s.src}/>}
+                </NavLink>
+
             </div>
             <div className={s.name}>{name}</div>
             <div>

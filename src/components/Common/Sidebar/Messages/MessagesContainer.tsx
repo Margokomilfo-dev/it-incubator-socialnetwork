@@ -1,27 +1,22 @@
 import React from "react"
-import {addMessAC, changeNewMessTextAC} from "../../../../redux/messagesReduser"
+import {addMess, messagePageType} from "../../../../redux/messagesReduser"
 import Messages from "./Messages"
 import {connect} from "react-redux"
+import {AllAppTypes} from "../../../../redux/redux-store";
 
 
-let mapStateToProps = (state: any) => {
+type MapStateToPropsType = {
+    messagePage: messagePageType
+}
+type MapDispatchToPropsType = {
+    addMess: (value: string) => void
+}
+
+let mapStateToProps = (state: AllAppTypes): MapStateToPropsType => {
     return {
         messagePage: state.messagePage
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
-    return {
-        addMess: (value: string) => {
-            dispatch(addMessAC(value))
-        },
-        onChangeNewPostText: (value: string) => {
-            dispatch(changeNewMessTextAC(value))
-        }
-    }
-}
-
-
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)
-
-export default MessagesContainer
+//<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>
+export const MessagesContainer = connect <MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, {addMess})(Messages)

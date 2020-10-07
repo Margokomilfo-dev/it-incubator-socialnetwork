@@ -6,7 +6,6 @@ import {ProfilePageType} from "../../../../redux/profileReduser"
 type PostsPropsType = {
     profilePage: ProfilePageType
     addPost: (value: string) => void
-    onChangeNewPostText: (value: string) => void
 }
 
 function Posts(props: PostsPropsType) {
@@ -18,7 +17,7 @@ function Posts(props: PostsPropsType) {
         props.addPost(value)
         setValue('')
     }
-    let changeNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    let onChangeNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setValue(e.currentTarget.value)
     }
     return (
@@ -26,7 +25,7 @@ function Posts(props: PostsPropsType) {
             <div className={s.postTextarea}>
                 <textarea ref={newPostElement} className={s.textarea_post}
                           value={value}
-                          onChange={changeNewPostText}>New post</textarea>
+                          onChange={onChangeNewPostText}>New post</textarea>
                 <button className='postBtn' onClick={() => {onAddPost(value)}}>add</button>
             </div>
             {
