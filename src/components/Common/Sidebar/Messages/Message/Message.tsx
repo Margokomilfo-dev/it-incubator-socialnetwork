@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import s from '../Messages.module.css'
 
 type MessagePropsType = {
     message: string
@@ -7,7 +8,7 @@ type MessagePropsType = {
 
 function Message(props: MessagePropsType) {
     return (
-        <div>
+        <div className={s.messageField}>
             {props.message}
         </div>
     )

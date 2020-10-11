@@ -2,6 +2,7 @@ import {UserType} from "../../../../redux/allUsersReduser"
 import React, {useState} from "react"
 import axios from "axios"
 import s from "../Users/Users.module.css"
+import {UsersApi} from "../../../../redux/api";
 
 type PaginationPropsType = {
     totalCountPageArr: Array<number>
@@ -22,11 +23,10 @@ const Pagination: React.FC<PaginationPropsType> = ({totalCountPageArr, setUsers,
     let rightPortionPageNumber = portionNumber * portionSize
 
     let onChangeCurrentPage = (page: number) => {
-
-        //setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=24&page=${page}`).then(response => {
+        setIsFetching(true)
+        UsersApi.getUsers(page).then(response => {
             setIsFetching(false)
-            setUsers(response.data.items)
+            setUsers(response.items)
         })
         setCurrentPage(page)
     }

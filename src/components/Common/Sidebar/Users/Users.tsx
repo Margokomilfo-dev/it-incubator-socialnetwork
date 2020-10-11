@@ -1,22 +1,27 @@
 import React, {useEffect, useState} from "react"
-import {setUsers, setUsersCount, UserType} from "../../../../redux/allUsersReduser"
+import {toggleFollowingInProgress, setUsers, setUsersCount, UserType} from "../../../../redux/allUsersReduser"
 import s from './Users.module.css'
 import axios from 'axios'
 import Pagination from "../Pagination/Pagination"
 import User from "./User"
 import Preloader from "../../Preloader/Preloader"
+import { UsersApi } from "../../../../redux/api"
 
 type UsersPropsType = {
-    follow: (id: string) => void
-    unfollow: (id: string) => void
+    follow: (id: number) => void
+    unfollow: (id: number) => void
     setUsers: (users: Array<UserType>) => void
     users: Array<UserType>
     setUsersCount: (totalCount: number) => void
     totalCountUsers: number
+    toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
+    followingInProgress: Array<number>
 }
 
 
-const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users, setUsersCount, totalCountUsers}) => {
+const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users,
+                                             setUsersCount, totalCountUsers, toggleFollowingInProgress,
+                                             followingInProgress}) => {
 
 
     let [currentPage, setCurrentPage] = useState<number>(1)
@@ -25,9 +30,9 @@ const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users, set
 
     useEffect(() => {
         !users.length && setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=24&page=${currentPage}`).then(response => {
-            setUsers(response.data.items)
-            setUsersCount(response.data.totalCount)
+        UsersApi.getUsers(currentPage).then(response => {
+            setUsers(response.items)
+            setUsersCount(response.totalCount)
             setIsFetching(false )
         })
     }, []);
@@ -55,12 +60,16 @@ const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users, set
                                 setIsFetching={setIsFetching}/>
                 </div>
                 <div className={s.users}>{
-                    users.map(u => <User name={u.name}
+                    users.map(u => <User key={u.id}
+                                         name={u.name}
                                          followed={u.followed}
                                          follow={follow}
                                          unfollow={unfollow}
                                          id={u.id}
                                          photos = {u.photos}
+                                         toggleFollowingInProgress={toggleFollowingInProgress}
+                                         followingInProgress = {followingInProgress}
+
                     />)}
                 </div>
             </div>

@@ -1,14 +1,16 @@
-import {combineReducers, createStore} from "redux"
+import {combineReducers, createStore, Store} from "redux"
 import profileReduser from "./profileReduser"
 import messagesReduser from "./messagesReduser"
 import allUsersReduser from "./allUsersReduser"
+import authReduser from "./authReducer"
 
 let reducers = combineReducers({
     profilePage: profileReduser,
     messagePage: messagesReduser,
-    allUsers: allUsersReduser
+    allUsers: allUsersReduser,
+    auth: authReduser
 })
-let store = createStore(reducers)
+let store: Store = createStore(reducers)
 
 export type AllAppTypes = ReturnType<typeof reducers>
 // @ts-ignore

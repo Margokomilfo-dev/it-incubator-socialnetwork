@@ -12,7 +12,6 @@ export type ProfilePageType = {
     posts: Array<PostsType>
     profile: ProfileType | null
 }
-
 export type ProfileType = {
     userId: number
     lookingForAJob: boolean
@@ -21,7 +20,6 @@ export type ProfileType = {
     contacts: ContactsType
     photos: PhotosType
 }
-
 export type ContactsType = {
     github: string | null
     vk: string | null

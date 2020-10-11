@@ -1,8 +1,14 @@
 import s from "./Header.module.css"
 import logo from "../../img/logo-job.png"
 import React from "react"
+import {NavLink} from "react-router-dom";
+import {ProfileType} from "../../redux/profileReduser";
 
-function Header() {
+type HeaderPropsType = {
+    isLogin: boolean
+}
+ const Header: React.FC<HeaderPropsType> = ({isLogin}) => {
+    debugger
     return (
         <div className={s.header}>
             <div className={s.header_logo}>
@@ -20,11 +26,24 @@ function Header() {
             </div>
             <div className={s.header_log}>
                 <div className={s.login}>
-                    <button className='logButton'>LogIn</button>
+                    {isLogin
+                        ?
+                        <div className={s.logout}>
+                            <img className={s.loginImg} alt="photo"/>
+                            <button className='logButton'>
+                                <NavLink to={'/login'}>LogOut</NavLink>
+                            </button>
+                        </div>
+                        :
+                        <div className={s.logIn}>
+                            <button className='logButton'>
+                                <NavLink to={'/login'} >LogIn</NavLink>
+                            </button>
+                        </div>
+                    }
+
                 </div>
-                <div className={s.logout}>
-                    <button className='logButton'>LogOut</button>
-                </div>
+
             </div>
         </div>
     )

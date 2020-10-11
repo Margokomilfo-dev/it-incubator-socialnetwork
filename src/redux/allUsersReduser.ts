@@ -2,16 +2,19 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SETUSERS = 'SETUSERS'
 const SETUSERSCOUNT = 'SETUSERSCOUNT'
+const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS'
 
 export type AllUsersPageType = {
     users: Array<UserType>
     totalCountUsers: number
     error: null | string
+    isFetching: boolean,
+    followingInProgress: Array<number>
 
 }
 export type UserType = {
     name: string
-    id: string
+    id: number
     uniqueUrlName: null | string
     photos: {
         small: null | string
@@ -24,29 +27,29 @@ export type UserType = {
 let initialState: AllUsersPageType = {
     users: [] as Array<UserType>,
     totalCountUsers: 0,
-    error: null
+    error: null,
+    isFetching: false,
+    followingInProgress: []
 }
 
-let allUsersReduser = (state = initialState, action: ActionsTypes) => {
+let allUsersReduser = (state = initialState, action: ActionsTypes): AllUsersPageType => {
     switch (action.type) {
         case FOLLOW:
-            debugger
-            return {
-                ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: false}
-                    }
-                    return u
-                })
-            }
-        case UNFOLLOW:
-            debugger
             return {
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.userId) {
                         return {...u, followed: true}
+                    }
+                    return u
+                })
+            }
+        case UNFOLLOW:
+            return {
+                ...state,
+                users: state.users.map(u => {
+                    if (u.id === action.userId) {
+                        return {...u, followed: false}
                     }
                     return u
                 })
@@ -61,6 +64,13 @@ let allUsersReduser = (state = initialState, action: ActionsTypes) => {
                 ...state,
                 totalCountUsers: action.totalCountUsers
             }
+        case FOLLOWING_IN_PROGRESS:
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
+            }
         default:
             return state
     }
@@ -70,11 +80,13 @@ export type ActionsTypes =
     | ReturnType<typeof unfollow>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setUsersCount>
+    | ReturnType<typeof toggleFollowingInProgress>
 
-export const follow = (id: string) => ({type: "FOLLOW", userId: id} as const)
-export const unfollow = (id: string) => ({type: "UNFOLLOW", userId: id} as const)
+export const follow = (id: number) => ({type: "FOLLOW", userId: id} as const)
+export const unfollow = (id: number) => ({type: "UNFOLLOW", userId: id} as const)
 export const setUsers = (users: Array<UserType>) => ({type: "SETUSERS", users} as const)
 export const setUsersCount = (totalCountUsers: number) => ({type: "SETUSERSCOUNT", totalCountUsers} as const)
+export const toggleFollowingInProgress = (isFetching: boolean, userId: number) => ({type: FOLLOWING_IN_PROGRESS, isFetching, userId} as const)
 
 
 export default allUsersReduser

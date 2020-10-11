@@ -1,12 +1,17 @@
 import s from "./Status.module.css"
 import React from "react"
 
-function Status() {
+type StatusPropsType = {
+    isLogin: boolean
+}
+const Status:React.FC<StatusPropsType> = (props: StatusPropsType) => {
     return (
         <div className={s.status}>
             <div className={s.status_content}>
-                <div className={s.online}>Online...</div>
-                {/*<div className={s.offline}>Offline...</div>*/}
+                {props.isLogin
+                    ? <div className={s.online}>Online...</div>
+                    : <div className={s.offline}>Offline...</div>
+                }
             </div>
         </div>
     )

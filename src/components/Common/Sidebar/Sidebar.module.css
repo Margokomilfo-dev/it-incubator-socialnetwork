@@ -9,7 +9,6 @@
     width: 200px;
     min-height: 100%;
     border-right: 1px solid lightgrey;
-    margin-top: 5px;
 }
 .user_photo {
     display: flex;

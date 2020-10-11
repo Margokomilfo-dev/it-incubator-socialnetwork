@@ -8,6 +8,12 @@
     align-content: space-between;
     height: 100%;
 }
+.messArea {
+    padding: 10px;
+}
+.messageField {
+    padding: 5px;
+}
 .messTextarea {
     display: flex;
 }
@@ -19,23 +25,36 @@
     width: 548px;
     height: 40px;
 }
+
 .dialogs {
     width: 170px;
-    border: 1px solid lightgrey;
+    border-right:  1px solid lightgrey;
     border-left: none;
+
 }
-.dialogs a{
+.userBlock {
+    display: flex;
+    align-items: center;
+    width: 170px;
+    border-bottom: 1px solid lightgrey;
+    border-left: none;
+    box-sizing: border-box;
+}
+.userPhoto {
+    display: flex;
+    border-radius: 100%;
+    margin-right: 10px;;
+}
+.userName {
+    display: flex;
+    align-items: center;
     color: black;
     text-decoration: none;
+    width: 170px;
+    padding: 5px;
 }
-.dialogs a.active{
+.active{
     background-color: #FEDA75;
     color: black;
     font-weight: 600;
-}
-.dialog {
-    display: flex;
-    padding: 15px;
-    border-bottom: 1px solid lightgrey;
-
 }
