@@ -11,7 +11,7 @@ let reducers = combineReducers({
     allUsers: allUsersReduser,
     auth: authReduser
 })
-let store: Store = createStore(reducers,  applyMiddleware(thunkMiddleWare))
+let store: Store = createStore(reducers, applyMiddleware(thunkMiddleWare))
 
 export type AllAppTypes = ReturnType<typeof reducers>
 // @ts-ignore

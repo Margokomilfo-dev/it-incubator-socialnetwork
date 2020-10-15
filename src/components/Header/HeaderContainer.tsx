@@ -12,7 +12,7 @@ type MapStateToPropsType = {
     isLogin: boolean
 }
 type MapDispatchToPropsType = {
-    authMeTC: any
+    authMeTC: () => void
 }
 
 const HeaderContainer: React.FC<HeaderContainerPropsType> = ({ isLogin, authMeTC}) => {

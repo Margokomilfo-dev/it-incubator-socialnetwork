@@ -21,6 +21,9 @@ let Profile = (props:ProfileProps) => {
                     <button className='photoButton'>Change photo</button>
                 </div>
                 <div  className={s.profileInfo}>
+                    <div className={s.fullName}>
+                        <h3>{props.profile.fullName}</h3>
+                    </div>
                     <UserStatus/>
                     <AboutMe  profile = {props.profile}/>
                 </div>

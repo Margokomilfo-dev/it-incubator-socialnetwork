@@ -1,4 +1,6 @@
 import {v1} from "uuid"
+import {Dispatch} from "redux";
+import {ProfileApi} from "./api";
 
 const ADD_POST = 'ADD_POST'
 const SET_PROFILE = 'SET_PROFILE'
@@ -43,7 +45,7 @@ let initialState: ProfilePageType = {
     profile: null
 }
 
-let profileReduser = (state:ProfilePageType = initialState, action: ActionsTypes):ProfilePageType => {
+let profileReduser = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             return {
@@ -66,4 +68,9 @@ export type ActionsTypes =
 export let addPost = (value: string) => ({type: "ADD_POST", value} as const)
 export let setProfile = (profile: ProfileType) => ({type: "SET_PROFILE", profile} as const)
 
+export const getProfileTC = (userId: string) => (dispatch: Dispatch<ActionsTypes>) => {
+    ProfileApi.getProfile(userId).then(response => {
+        dispatch(setProfile(response))
+    })
+}
 export default profileReduser
