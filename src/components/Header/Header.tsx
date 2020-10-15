@@ -8,7 +8,6 @@ type HeaderPropsType = {
     isLogin: boolean
 }
  const Header: React.FC<HeaderPropsType> = ({isLogin}) => {
-    debugger
     return (
         <div className={s.header}>
             <div className={s.header_logo}>

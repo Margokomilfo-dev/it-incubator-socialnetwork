@@ -14,7 +14,9 @@ type PaginationPropsType = {
     setIsFetching: (value: boolean) => void
 }
 
-const Pagination: React.FC<PaginationPropsType> = ({totalCountPageArr, setUsers, setCurrentPage, currentPage, totalCountPage, isFetching, setIsFetching}) => {
+const Pagination: React.FC<PaginationPropsType> = ({totalCountPageArr, setUsers, setCurrentPage,
+                                                       currentPage, totalCountPage, isFetching,
+                                                       setIsFetching }) => {
 
     let portionSize = 20
     let portionCount = Math.ceil(totalCountPage/portionSize)

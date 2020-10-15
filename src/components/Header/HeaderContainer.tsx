@@ -1,34 +1,22 @@
-import React, {useEffect} from "react"
-import Header from "./Header";
-import axios from "axios";
-import {connect} from "react-redux";
+import React from "react"
+import Header from "./Header"
+import {connect} from "react-redux"
 import {AllAppTypes} from "../../redux/redux-store"
-import {setUserData, setUserDataActionType} from "../../redux/authReducer";
-import {ProfileType} from "../../redux/profileReduser";
-import {AuthApi} from "../../redux/api";
+import {authMeTC, setUserDataActionType} from "../../redux/authReducer"
 
 type HeaderContainerPropsType = {
-    setUserData: (data: setUserDataActionType) => void
     isLogin: boolean
+    authMeTC: any
 }
 type MapStateToPropsType = {
     isLogin: boolean
 }
 type MapDispatchToPropsType = {
-    setUserData: (data: setUserDataActionType) => void
+    authMeTC: any
 }
 
-const HeaderContainer: React.FC<HeaderContainerPropsType> = ({setUserData, isLogin}) => {
-    AuthApi.authMe().then(response => {
-        debugger
-            if (response.data.resultCode === 0) {
-                let {email, id, login} = response.data.data
-                setUserData(response.data.data)
-            }
-        }
-
-    )
-
+const HeaderContainer: React.FC<HeaderContainerPropsType> = ({ isLogin, authMeTC}) => {
+    authMeTC()
     return (
         <Header isLogin={isLogin}/>
     )
@@ -37,4 +25,4 @@ const HeaderContainer: React.FC<HeaderContainerPropsType> = ({setUserData, isLog
 let mapStateToProps = (state: AllAppTypes) => ({
     isLogin: state.auth.isLogin
 })
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, {setUserData})(HeaderContainer)
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, { authMeTC})(HeaderContainer)

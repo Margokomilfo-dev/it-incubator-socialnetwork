@@ -2,8 +2,6 @@ import React from "react"
 import s from "./Users.module.css"
 import noPhoto from "../../../../img/noPhoto.png"
 import {NavLink} from "react-router-dom"
-import axios from "axios";
-import {UsersApi} from "../../../../redux/api";
 
 type UserPropsType = {
     name: string
@@ -12,11 +10,10 @@ type UserPropsType = {
     unfollow: (id: number) => void
     id: number
     photos: any
-    toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
 }
 const User: React.FC<UserPropsType> = ({name, followed, follow, unfollow, id, photos,
-                                           toggleFollowingInProgress, followingInProgress}) => {
+                                           followingInProgress}) => {
 
 
     return (
@@ -32,23 +29,10 @@ const User: React.FC<UserPropsType> = ({name, followed, follow, unfollow, id, ph
             <div>
                 {followed
                     ? <button disabled={followingInProgress.some(userId => userId === id)}
-                              onClick={() => {
-                                  toggleFollowingInProgress(true, id)
-                        UsersApi.unfollow(id).then(response => {
-                            response.resultCode === 0 && unfollow(id)
-                            toggleFollowingInProgress(false, id)
-                        })
-
-                    }}>Unfollow</button>
+                              onClick={() => {unfollow(id)}}>Unfollow</button>
 
                     : <button  disabled={followingInProgress.some(userId => userId === id)}
-                               onClick={() => {toggleFollowingInProgress(true, id)
-                        UsersApi.follow(id).then(response => {
-                            response.resultCode === 0 && follow(id)
-                            toggleFollowingInProgress(false, id)
-                        })
-
-                    }}>Follow</button>}
+                               onClick={() =>{follow(id)}}>Follow</button>}
             </div>
         </div>
     )

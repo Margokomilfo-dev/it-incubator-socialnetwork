@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import Users from "./Users";
 import {
     follow,
-    toggleFollowingInProgress,
     setUsers,
     setUsersCount,
     unfollow,
@@ -21,7 +20,6 @@ type MapDispatchToPropsType = {
     unfollow: (id: number) => void
     setUsers: (users: Array<UserType>) => void
     setUsersCount: (totalCount: number) => void
-    toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
 }
 
 let mapStateToProps = (state: AllAppTypes) => {
@@ -33,4 +31,4 @@ let mapStateToProps = (state: AllAppTypes) => {
 }
 
 export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>
-(mapStateToProps, {follow, unfollow, setUsers, setUsersCount, toggleFollowingInProgress})(Users)
+(mapStateToProps, {follow, unfollow, setUsers, setUsersCount})(Users)

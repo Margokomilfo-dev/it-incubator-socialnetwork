@@ -1,3 +1,7 @@
+import {AuthApi, UsersApi} from "./api";
+import {Dispatch} from "redux";
+import {followSuccess, toggleFollowingInProgress} from "./allUsersReduser";
+
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
 
 type AuthType = {
@@ -35,6 +39,16 @@ export type setUserDataActionType = {
     email: string
     login: string
 }
-export let setUserData = (data: setUserDataActionType) => ({type: SET_AUTH_USER_DATA, data} as const)
+export const setUserData = (data: setUserDataActionType) => ({type: SET_AUTH_USER_DATA, data} as const)
+
+export const authMeTC = () => (dispatch: Dispatch<ActionsTypes>) => {
+    AuthApi.authMe().then(response => {
+        if (response.data.resultCode === 0) {
+            let {email, id, login} = response.data.data
+            dispatch(setUserData(response.data.data))
+        }
+    })
+}
+
 
 export default authReduser

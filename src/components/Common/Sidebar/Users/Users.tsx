@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react"
-import {toggleFollowingInProgress, setUsers, setUsersCount, UserType} from "../../../../redux/allUsersReduser"
+import {UserType} from "../../../../redux/allUsersReduser"
 import s from './Users.module.css'
-import axios from 'axios'
 import Pagination from "../Pagination/Pagination"
 import User from "./User"
 import Preloader from "../../Preloader/Preloader"
@@ -14,13 +13,12 @@ type UsersPropsType = {
     users: Array<UserType>
     setUsersCount: (totalCount: number) => void
     totalCountUsers: number
-    toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
 }
 
 
 const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users,
-                                             setUsersCount, totalCountUsers, toggleFollowingInProgress,
+                                             setUsersCount, totalCountUsers,
                                              followingInProgress}) => {
 
 
@@ -67,7 +65,6 @@ const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users,
                                          unfollow={unfollow}
                                          id={u.id}
                                          photos = {u.photos}
-                                         toggleFollowingInProgress={toggleFollowingInProgress}
                                          followingInProgress = {followingInProgress}
 
                     />)}

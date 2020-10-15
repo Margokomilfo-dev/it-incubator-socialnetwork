@@ -1,3 +1,6 @@
+import {UsersApi} from "./api";
+import {Dispatch} from "redux";
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SETUSERS = 'SETUSERS'
@@ -76,17 +79,36 @@ let allUsersReduser = (state = initialState, action: ActionsTypes): AllUsersPage
     }
 }
 export type ActionsTypes =
-    ReturnType<typeof follow>
-    | ReturnType<typeof unfollow>
+    ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setUsersCount>
     | ReturnType<typeof toggleFollowingInProgress>
 
-export const follow = (id: number) => ({type: "FOLLOW", userId: id} as const)
-export const unfollow = (id: number) => ({type: "UNFOLLOW", userId: id} as const)
+export const followSuccess = (id: number) => ({type: "FOLLOW", userId: id} as const)
+export const unfollowSuccess = (id: number) => ({type: "UNFOLLOW", userId: id} as const)
 export const setUsers = (users: Array<UserType>) => ({type: "SETUSERS", users} as const)
 export const setUsersCount = (totalCountUsers: number) => ({type: "SETUSERSCOUNT", totalCountUsers} as const)
-export const toggleFollowingInProgress = (isFetching: boolean, userId: number) => ({type: FOLLOWING_IN_PROGRESS, isFetching, userId} as const)
+export const toggleFollowingInProgress = (isFetching: boolean, userId: number) => ({
+    type: FOLLOWING_IN_PROGRESS,
+    isFetching,
+    userId
+} as const)
 
+
+export const follow = (userId: number) => (dispatch: Dispatch<ActionsTypes>) => {
+    dispatch(toggleFollowingInProgress(true, userId))
+    UsersApi.follow(userId).then(response => {
+        response.resultCode === 0 && dispatch(followSuccess(userId))
+        dispatch(toggleFollowingInProgress(false, userId))
+    })
+}
+export const unfollow = (userId: number) => (dispatch: Dispatch<ActionsTypes>) => {
+    dispatch(toggleFollowingInProgress(true, userId))
+    UsersApi.unfollow(userId).then(response => {
+        response.resultCode === 0 && dispatch(unfollowSuccess(userId))
+        dispatch(toggleFollowingInProgress(false, userId))
+    })
+}
 
 export default allUsersReduser

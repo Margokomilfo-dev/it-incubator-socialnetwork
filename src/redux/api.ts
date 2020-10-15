@@ -36,11 +36,3 @@ export const UsersApi = {
 export const ProfileApi = {
 
 }
-
-
-// axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {
-//     withCredentials: true,
-//     headers: {
-//         'API-KEY': 'c3ce5454-9236-4e2f-a475-c9ef1d7a79d1'
-//     }
-// })
