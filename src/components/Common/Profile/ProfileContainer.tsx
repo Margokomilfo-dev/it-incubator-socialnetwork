@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import {getProfileTC, ProfileType, setProfile} from "../../../redux/profileReduser"
 import { withRouter, RouteComponentProps } from "react-router-dom"
 import {AllAppTypes} from "../../../redux/redux-store"
+import {compose} from "redux";
 
 type MapStateToPropsType = {
     profile: ProfileType | null
@@ -30,5 +31,10 @@ let ProfileContainer = (props:PropsType ) => {
 let mapStateToProps= (state: AllAppTypes): MapStateToPropsType => ({
     profile: state.profilePage.profile
 })
+
+// export default compose (
+//     withRouter,
+//     connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, {setProfile, getProfileTC}),
+// )(ProfileContainer)
 
 export default withRouter (connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, {setProfile, getProfileTC})(ProfileContainer))
