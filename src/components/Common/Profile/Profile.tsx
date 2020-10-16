@@ -3,7 +3,7 @@ import React from "react"
 import AboutMe from "./AboutMe/AboutMe"
 import s from './Profile.module.css'
 import PostsContainer from "./Posts/PostsContainer"
-import {ProfileType, setProfile} from "../../../redux/profileReduser"
+import {ProfileType} from "../../../redux/profileReduser"
 import Preloader from "../Preloader/Preloader"
 
 type ProfileProps = {

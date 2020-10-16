@@ -2,7 +2,7 @@ import React from "react"
 import Header from "./Header"
 import {connect} from "react-redux"
 import {AllAppTypes} from "../../redux/redux-store"
-import {authMeTC, setUserDataActionType} from "../../redux/authReducer"
+import {authMeTC} from "../../redux/authReducer"
 
 type HeaderContainerPropsType = {
     isLogin: boolean

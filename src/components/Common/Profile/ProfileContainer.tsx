@@ -1,11 +1,9 @@
 import React, {useEffect} from "react"
-import axios from "axios"
 import Profile from "./Profile"
 import { connect } from "react-redux"
 import {getProfileTC, ProfileType, setProfile} from "../../../redux/profileReduser"
 import { withRouter, RouteComponentProps } from "react-router-dom"
-import {AllAppTypes} from "../../../redux/redux-store";
-import {ProfileApi} from "../../../redux/api";
+import {AllAppTypes} from "../../../redux/redux-store"
 
 type MapStateToPropsType = {
     profile: ProfileType | null

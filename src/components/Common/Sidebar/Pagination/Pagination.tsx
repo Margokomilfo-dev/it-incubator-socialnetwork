@@ -1,6 +1,5 @@
 import {UserType} from "../../../../redux/allUsersReduser"
 import React, {useState} from "react"
-import axios from "axios"
 import s from "../Users/Users.module.css"
 import {UsersApi} from "../../../../redux/api";
 

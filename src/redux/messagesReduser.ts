@@ -1,7 +1,6 @@
 import {v1} from "uuid"
 
 const ADD_MESS = 'ADD_MESS'
-const CHANGE_NEW_MESS_TEXT = 'CHANGE_NEW_MESS_TEXT'
 
 export type DialogsType = {
     id: string

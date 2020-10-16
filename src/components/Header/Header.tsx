@@ -1,8 +1,7 @@
 import s from "./Header.module.css"
 import logo from "../../img/logo-job.png"
 import React from "react"
-import {NavLink} from "react-router-dom";
-import {ProfileType} from "../../redux/profileReduser";
+import {NavLink} from "react-router-dom"
 
 type HeaderPropsType = {
     isLogin: boolean

@@ -1,4 +1,3 @@
-import s from "./Status.module.css"
 import React from "react"
 import Status from "./Status";
 import { connect } from "react-redux";
