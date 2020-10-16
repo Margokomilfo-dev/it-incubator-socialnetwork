@@ -6,8 +6,9 @@ import {ProfileType} from "../../redux/profileReduser";
 
 type HeaderPropsType = {
     isLogin: boolean
+    login: string | null
 }
- const Header: React.FC<HeaderPropsType> = ({isLogin}) => {
+ const Header: React.FC<HeaderPropsType> = ({isLogin, login}) => {
     return (
         <div className={s.header}>
             <div className={s.header_logo}>
@@ -28,7 +29,7 @@ type HeaderPropsType = {
                     {isLogin
                         ?
                         <div className={s.logout}>
-                            <img className={s.loginImg} alt="photo"/>
+                            {isLogin ? login : ''}
                             <button className='logButton'>
                                 <NavLink to={'/login'}>LogOut</NavLink>
                             </button>

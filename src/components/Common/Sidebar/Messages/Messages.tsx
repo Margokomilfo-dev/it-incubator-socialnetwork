@@ -3,23 +3,25 @@ import s from './Messages.module.css'
 import UserDialog from "./UserDialog/UserDialog"
 import Message from "./Message/Message"
 import {messagePageType} from "../../../../redux/messagesReduser"
+import { Redirect } from "react-router-dom"
 
 
 type MessagesPropsType = {
     messagePage: messagePageType
     addMess: (value: string) => void
+    isLogin: boolean
 }
 
 function Messages(props: MessagesPropsType) {
+
     let [value, setValue] = useState<string>('')
 
     let onAddMess = (value: string) => {
         props.addMess(value)
         setValue('')
     }
-
     return (
-        <div className={s.message}>
+            <div className={s.message}>
             <div className={s.dialogs}>
                 {
                     props.messagePage.dialogs.map(d => <UserDialog id={d.id} name={d.name} key={d.id}/>)

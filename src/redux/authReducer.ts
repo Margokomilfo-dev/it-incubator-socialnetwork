@@ -41,7 +41,7 @@ export type setUserDataActionType = {
 }
 export const setUserData = (data: setUserDataActionType) => ({type: SET_AUTH_USER_DATA, data} as const)
 
-export const authMeTC = () => (dispatch: Dispatch<ActionsTypes>) => {
+export const authMeTC = () => (dispatch: Dispatch<ActionsTypes>) => {debugger
     AuthApi.authMe().then(response => {
         if (response.data.resultCode === 0) {
             let {email, id, login} = response.data.data

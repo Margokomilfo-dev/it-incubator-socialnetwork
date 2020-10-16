@@ -7,22 +7,27 @@ import {authMeTC, setUserDataActionType} from "../../redux/authReducer"
 type HeaderContainerPropsType = {
     isLogin: boolean
     authMeTC: any
+    login: string | null
 }
+
 type MapStateToPropsType = {
     isLogin: boolean
+    login: string | null
 }
 type MapDispatchToPropsType = {
     authMeTC: () => void
 }
 
-const HeaderContainer: React.FC<HeaderContainerPropsType> = ({ isLogin, authMeTC}) => {
+const HeaderContainer: React.FC<HeaderContainerPropsType> = ({ isLogin, authMeTC, login}) => {
     authMeTC()
     return (
-        <Header isLogin={isLogin}/>
+        <Header isLogin={isLogin} login={login}/>
     )
 }
 
 let mapStateToProps = (state: AllAppTypes) => ({
-    isLogin: state.auth.isLogin
+    isLogin: state.auth.isLogin,
+    login: state.auth.login
 })
+
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, { authMeTC})(HeaderContainer)
