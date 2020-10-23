@@ -4,6 +4,7 @@ import {ProfileApi} from "./api";
 
 const ADD_POST = 'ADD_POST'
 const SET_PROFILE = 'SET_PROFILE'
+const SET_STATUS = 'SET_STATUS'
 
 export type PostsType = {
     id: string
@@ -13,6 +14,7 @@ export type PostsType = {
 export type ProfilePageType = {
     posts: Array<PostsType>
     profile: ProfileType | null
+    status: string | null
 }
 export type ProfileType = {
     userId: number
@@ -42,7 +44,8 @@ let initialState: ProfilePageType = {
         {id: v1(), content: 'Hello! This is my third post!', likesCount: 15},
         {id: v1(), content: 'HI!', likesCount: 0},
     ] as Array<PostsType>,
-    profile: null
+    profile: null,
+    status: null
 }
 
 let profileReduser = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
@@ -57,6 +60,12 @@ let profileReduser = (state: ProfilePageType = initialState, action: ActionsType
                 ...state,
                 profile: {...action.profile}
             }
+        case SET_STATUS:
+            debugger
+            return {
+                ...state,
+                status: action.newStatus
+            }
         default:
             return state
     }
@@ -64,13 +73,28 @@ let profileReduser = (state: ProfilePageType = initialState, action: ActionsType
 export type ActionsTypes =
     ReturnType<typeof addPost>
     | ReturnType<typeof setProfile>
+    | ReturnType<typeof setStatus>
 
-export let addPost = (value: string) => ({type: "ADD_POST", value} as const)
-export let setProfile = (profile: ProfileType) => ({type: "SET_PROFILE", profile} as const)
+export let addPost = (value: string) => ({type: ADD_POST, value} as const)
+export let setProfile = (profile: ProfileType) => ({type: SET_PROFILE, profile} as const)
+export let setStatus = (newStatus: string) => ({type: SET_STATUS, newStatus} as const)
 
 export const getProfileTC = (userId: string) => (dispatch: Dispatch<ActionsTypes>) => {
     ProfileApi.getProfile(userId).then(response => {
         dispatch(setProfile(response))
+    })
+}
+export const getStatus = (userId: number) => (dispatch: Dispatch<ActionsTypes>) => {
+    ProfileApi.getStatus(userId).then(response => {
+        dispatch(setStatus(response))
+    })
+}
+export const updateStatus = (status: string) => (dispatch: Dispatch<ActionsTypes>) => {
+    ProfileApi.updateOldStatus(status).then(response => {
+        if (response.resultCode === 0) {
+            dispatch(setStatus(response))
+        }
+
     })
 }
 export default profileReduser

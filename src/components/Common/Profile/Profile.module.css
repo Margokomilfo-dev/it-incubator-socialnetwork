@@ -3,10 +3,12 @@
 }
 .profileTopBlock {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
 }
 .profilePhoto {
-    width: 300px
+    width: 300px;
+    margin-right: 10px;
+
 }
 .fullName {
     margin-bottom: 10px;

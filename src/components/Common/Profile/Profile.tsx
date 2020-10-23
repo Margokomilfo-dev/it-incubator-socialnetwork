@@ -8,6 +8,8 @@ import Preloader from "../Preloader/Preloader"
 
 type ProfileProps = {
     profile: ProfileType | null
+    status: string | null
+    updateStatus: (status: string) => void
 }
 
 let Profile = (props:ProfileProps) => {
@@ -24,7 +26,7 @@ let Profile = (props:ProfileProps) => {
                     <div className={s.fullName}>
                         <h3>{props.profile.fullName}</h3>
                     </div>
-                    <UserStatus/>
+                    <UserStatus profile = {props.profile} status={props.status} updateStatus={props.updateStatus}/>
                     <AboutMe  profile = {props.profile}/>
                 </div>
             </div>
