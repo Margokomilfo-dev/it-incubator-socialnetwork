@@ -61,7 +61,6 @@ let profileReduser = (state: ProfilePageType = initialState, action: ActionsType
                 profile: {...action.profile}
             }
         case SET_STATUS:
-            debugger
             return {
                 ...state,
                 status: action.newStatus
@@ -84,17 +83,19 @@ export const getProfileTC = (userId: string) => (dispatch: Dispatch<ActionsTypes
         dispatch(setProfile(response))
     })
 }
+
 export const getStatus = (userId: number) => (dispatch: Dispatch<ActionsTypes>) => {
     ProfileApi.getStatus(userId).then(response => {
         dispatch(setStatus(response))
     })
 }
 export const updateStatus = (status: string) => (dispatch: Dispatch<ActionsTypes>) => {
-    ProfileApi.updateOldStatus(status).then(response => {
-        if (response.resultCode === 0) {
-            dispatch(setStatus(response))
-        }
-
-    })
+   ProfileApi.updateOldStatus(status).then(response => {
+       if (response.resultCode === 0){
+           dispatch(setStatus(response.messages))
+       }
+   })
 }
+
+
 export default profileReduser

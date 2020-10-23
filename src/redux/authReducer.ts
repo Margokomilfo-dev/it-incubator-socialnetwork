@@ -22,7 +22,6 @@ let initialState: AuthType = {
 let authReduser = (state:AuthType = initialState, action: ActionsTypes):AuthType => {
     switch (action.type) {
         case SET_AUTH_USER_DATA:
-            debugger
             return {
                 ...state,
                 ...action.data,
@@ -41,7 +40,7 @@ export type setUserDataActionType = {
 }
 export const setUserData = (data: setUserDataActionType) => ({type: SET_AUTH_USER_DATA, data} as const)
 
-export const authMeTC = () => (dispatch: Dispatch<ActionsTypes>) => {debugger
+export const authMeTC = () => (dispatch: Dispatch<ActionsTypes>) => {
     AuthApi.authMe().then(response => {
         if (response.data.resultCode === 0) {
             let {email, id, login} = response.data.data

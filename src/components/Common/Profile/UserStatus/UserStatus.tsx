@@ -2,12 +2,14 @@ import s from "./UserStatus.module.css"
 import React, {ChangeEvent, useState} from "react"
 import {ProfileType} from "../../../../redux/profileReduser";
 
+
 type UserStatusPropsType = {
     profile: ProfileType
     status: string | null
     updateStatus: (status: string) => void
 }
-function UserStatus(props:UserStatusPropsType) {
+
+function UserStatus(props: UserStatusPropsType) {
     let [statusMod, setStatusMod] = useState(false)
     let [value, setValue] = useState('no status')
 
@@ -21,8 +23,14 @@ function UserStatus(props:UserStatusPropsType) {
         setValue(e.currentTarget.value)
     }
     const statusOff = () => {
-        setStatusMod(false)
-        props.updateStatus(value)
+        if (value.length <= 300) {
+            props.updateStatus(value)
+            setStatusMod(false)
+        }
+        else {
+            alert ('error length')
+        }
+
     }
 
     return (
@@ -32,7 +40,8 @@ function UserStatus(props:UserStatusPropsType) {
                     ? <textarea onBlur={statusOff} className={s.textarea_status}
                                 onChange={onChangeStatus}
                                 placeholder='status' autoFocus value={value}/>
-                    : <span onDoubleClick={statusOn} className={s.span_status}> {!props.status ? value : props.status} </span>
+                    : <span onDoubleClick={statusOn}
+                            className={s.span_status}> {!props.status ? value : props.status} </span>
             }
 
         </div>

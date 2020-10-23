@@ -4,7 +4,6 @@ import {connect} from "react-redux"
 import {getProfileTC, ProfileType, setProfile, getStatus, updateStatus} from "../../../redux/profileReduser"
 import {withRouter, RouteComponentProps} from "react-router-dom"
 import {AllAppTypes} from "../../../redux/redux-store"
-import {ProfileApi} from "../../../redux/api";
 //import {compose} from "redux";
 
 type MapStateToPropsType = {
@@ -14,21 +13,18 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     setProfile: (profile: ProfileType) => void
     getStatus: (newStatus: number) => void
-    getProfileTC: (userId: string) => void
     updateStatus: (status: string) => void
-
+    getProfileTC: (userId: string) => void
 }
 type PathPropsType = { userId: string }
 type PropsType = RouteComponentProps<PathPropsType> & MapStateToPropsType & MapDispatchToPropsType
 
 
 let ProfileContainer = (props: PropsType) => {
+    let userId = props.match.params.userId
     useEffect(() => {
-        let userId = props.match.params.userId
         !userId && (userId = '6314')
         props.getProfileTC(userId)
-
-
     }, [])
 
     if (props.profile) {
@@ -37,7 +33,7 @@ let ProfileContainer = (props: PropsType) => {
 
 
     return (
-        <Profile {...props} profile={props.profile} status={props.status} updateStatus={updateStatus}/>
+        <Profile {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
     )
 }
 
@@ -55,5 +51,5 @@ export default withRouter(connect<MapStateToPropsType, MapDispatchToPropsType, {
     setProfile,
     getProfileTC,
     getStatus,
-    updateStatus,
+    updateStatus
 })(ProfileContainer))
