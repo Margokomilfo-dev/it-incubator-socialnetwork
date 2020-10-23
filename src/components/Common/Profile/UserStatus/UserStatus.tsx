@@ -1,6 +1,6 @@
 import s from "./UserStatus.module.css"
 import React, {ChangeEvent, useState} from "react"
-import {ProfileType} from "../../../../redux/profileReduser";
+import {ProfileType} from "../../../../redux/profileReduser"
 
 
 type UserStatusPropsType = {

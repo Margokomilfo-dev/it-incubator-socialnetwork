@@ -4,7 +4,7 @@ import {connect} from "react-redux"
 import {getProfileTC, ProfileType, setProfile, getStatus, updateStatus} from "../../../redux/profileReduser"
 import {withRouter, RouteComponentProps} from "react-router-dom"
 import {AllAppTypes} from "../../../redux/redux-store"
-//import {compose} from "redux";
+//import {compose} from "redux"
 
 type MapStateToPropsType = {
     profile: ProfileType | null

@@ -1,6 +1,6 @@
 import {v1} from "uuid"
-import {Dispatch} from "redux";
-import {ProfileApi} from "./api";
+import {Dispatch} from "redux"
+import {ProfileApi} from "./api"
 
 const ADD_POST = 'ADD_POST'
 const SET_PROFILE = 'SET_PROFILE'
