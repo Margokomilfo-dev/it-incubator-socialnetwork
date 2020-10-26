@@ -11,7 +11,7 @@
 }
 .logButton {
     width: 100px;
-    height: 25px;
+    height: 40px;
     border: none;
     margin-bottom: 5px;
     cursor: pointer;
@@ -21,7 +21,7 @@
 }
 .photoButton {
     width: 100%;
-    height: 30px;
+    height: 40px;
     border: none;
     margin-bottom: 5px;
     cursor: pointer;
@@ -36,5 +36,15 @@
     cursor: pointer;
 }
 .postBtn:hover {
+    background-color: #FEDA75;
+}
+
+.addUserBtn {
+    width: 70px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+.addUserBtn:hover {
     background-color: #FEDA75;
 }

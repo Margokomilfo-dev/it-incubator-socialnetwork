@@ -1,4 +1,4 @@
-import {addMess, messagePageType} from "../../../../redux/messagesReduser"
+import {addMessage, messagePageType} from "../../../../redux/messagesReduser"
 import Messages from "./Messages"
 import {connect} from "react-redux"
 import {AllAppTypes} from "../../../../redux/redux-store"
@@ -10,7 +10,7 @@ type MapStateToPropsType = {
     isLogin: boolean
 }
 type MapDispatchToPropsType = {
-    addMess: (value: string) => void
+    addMessage: (value: { messageText: string }) => void
 }
 
 let mapStateToProps = (state: AllAppTypes): MapStateToPropsType => {
@@ -25,7 +25,7 @@ let withRedirect = withLoginRedirect(Messages)
 
 export const MessagesContainer =
     connect <MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>
-(mapStateToProps, {addMess})(withRedirect)
+(mapStateToProps, {addMessage})(withRedirect)
 
 // export const MessageContainer = compose (
 //     connect <MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>

@@ -53,7 +53,7 @@ let profileReduser = (state: ProfilePageType = initialState, action: ActionsType
         case ADD_POST:
             return {
                 ...state,
-                posts: [{id: v1(), content: action.value, likesCount: 10}, ...state.posts]
+                posts: [{id: v1(), content: action.value.postText, likesCount: 10}, ...state.posts]
             }
         case SET_PROFILE:
             return {
@@ -74,7 +74,7 @@ export type ActionsTypes =
     | ReturnType<typeof setProfile>
     | ReturnType<typeof setStatus>
 
-export let addPost = (value: string) => ({type: ADD_POST, value} as const)
+export let addPost = (value: { postText: string }) => ({type: ADD_POST, value} as const)
 export let setProfile = (profile: ProfileType) => ({type: SET_PROFILE, profile} as const)
 export let setStatus = (newStatus: string) => ({type: SET_STATUS, newStatus} as const)
 

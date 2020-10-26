@@ -1,4 +1,6 @@
-
+.textAreaBlock {
+    margin: 10px 0;
+}
 .postTextarea {
     display: flex;
     justify-content: space-between;

@@ -39,14 +39,14 @@ let messagesReduser = (state:messagePageType = initialState, action: ActionsType
         case ADD_MESS:
             return {
                 ...state,
-                messages: [...state.messages, {id: v1(), message: action.value}]
+                messages: [...state.messages, {id: v1(), message: action.value.messageText}]
             }
         default:
             return state
     }
 }
 
-export type ActionsType = ReturnType<typeof addMess>
-export let addMess = (value: string) => ({type: "ADD_MESS", value} as const)
+export type ActionsType = ReturnType<typeof addMessage>
+export let addMessage = (value: { messageText: string }) => ({type: "ADD_MESS", value} as const)
 
 export default messagesReduser

@@ -14,8 +14,7 @@
 .messageField {
     padding: 5px;
 }
-.messTextarea {
-    display: flex;
+.addMessageTextarea {
 }
 .messTextarea {
     display: flex;

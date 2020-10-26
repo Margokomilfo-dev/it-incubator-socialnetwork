@@ -1,24 +1,22 @@
-import React, {ChangeEvent, useState} from "react"
+import React, {useState} from "react"
 import s from './Messages.module.css'
 import UserDialog from "./UserDialog/UserDialog"
 import Message from "./Message/Message"
 import {messagePageType} from "../../../../redux/messagesReduser"
-import { Redirect } from "react-router-dom"
+import {AddMessageForm, FormPropsType} from "./AddMessageForm"
 
 
 type MessagesPropsType = {
     messagePage: messagePageType
-    addMess: (value: string) => void
+    addMessage: (value: { messageText: string }) => void
     isLogin: boolean
 }
 
 function Messages(props: MessagesPropsType) {
 
-    let [value, setValue] = useState<string>('')
-
-    let onAddMess = (value: string) => {
-        props.addMess(value)
-        setValue('')
+    let onAddMess = (values: FormPropsType): void => {
+        props.addMessage(values)
+        //props.addPost(value)
     }
     return (
             <div className={s.message}>
@@ -34,11 +32,12 @@ function Messages(props: MessagesPropsType) {
                     }
                 </div>
                 <div className={s.newMessArea}>
-                    <div className={s.messTextarea}>
-                             <textarea className={s.textarea_message}
-                                       onChange={(e)=> {setValue(e.currentTarget.value)}}
-                                       value={value}> </textarea>
-                        <button className='postBtn' onClick={() => {onAddMess(value)}}>click</button>
+                    <div className={s.addMessageTextarea}>
+                        <AddMessageForm addMessage={onAddMess}/>
+                             {/*<textarea className={s.textarea_message}*/}
+                             {/*          onChange={(e)=> {setValue(e.currentTarget.value)}}*/}
+                             {/*          value={value}> </textarea>*/}
+                             {/*<button className='postBtn' onClick={() => {onAddMess(value)}}>click</button>*/}
                     </div>
 
                 </div>

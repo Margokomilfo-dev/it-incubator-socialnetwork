@@ -1,48 +1,33 @@
 import React from "react"
 import {Field, Form} from "react-final-form"
+import {FormValuesType, LoginForm} from "./LoginForm"
+import s from './Login.module.css'
 //import {Form, reduxForm, Field} from "redux-form";
 
 type LoginPropsType = {}
 export const Login: React.FC<LoginPropsType> = (props: LoginPropsType) => {
-    const onSubmit = (values: any): void => {
+    const onSubmit = (values: FormValuesType): void => {
         console.log(values)
     }
     return (
-        <div>
-            <div>Login</div>
-            <LoginForm onSubmit={onSubmit}/>
-            {/*<LoginReduxForm onSubmit={onSubmit}/>*/}
+        <div className={s.login}>
+            <div className={s.title}>Login</div>
+            <div className={s.date}>
+                <div>
+                    email: <span className={s.loginData}>margokomilfo@mail.ru</span>
+                </div>
+                <div>
+                    password: <span className={s.loginData}>123456789</span>
+                </div>
+            </div>
+            <div className={s.subTitle}>Please, enter your email and password:</div>
+
+            <div>
+                <LoginForm onSubmit={onSubmit}/>
+                {/*<LoginReduxForm onSubmit={onSubmit}/>*/}
+            </div>
+
+
         </div>
     )
 }
-type FormValuesType = {
-    email: string
-    password: string
-    rememberMe: boolean
-}
-type LoginFormPropsType = {
-    onSubmit: (values: FormValuesType) => void
-}
-export const LoginForm = (props: LoginFormPropsType) => {
-    return (
-        <Form  onSubmit={props.onSubmit}>
-            {({ handleSubmit}) =>  (
-                <form onSubmit={handleSubmit}>
-                    <div><Field name="email" component="input" placeholder="email" /></div>
-                    <div><Field name="password" component="input" placeholder="password" /></div>
-                    <div><Field name="rememberMe" component="input" type="checkbox"/></div>
-                    <div><button type="submit">LogIn</button></div>
-                </form>
-            )}
-        </Form>
-        // <Form>
-        //     <form onSubmit={props.handleSubmit}>
-        //         <div><Field name="email" component="input" placeholder="email" /></div>
-        //         <div><Field name="password" component="input" type="password" placeholder="password" /></div>
-        //         <div><Field name="rememberMe" component="input" type="checkbox"/></div>
-        //         <div><button type="submit">LogIn</button></div>
-        //     </form>
-        // </Form>
-    )
-}
-//const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)

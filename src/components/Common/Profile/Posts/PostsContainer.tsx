@@ -1,5 +1,5 @@
 import {addPost} from "../../../../redux/profileReduser"
-import Posts from "./Posts"
+import {Posts} from "./Posts"
 import {connect} from "react-redux"
 
 

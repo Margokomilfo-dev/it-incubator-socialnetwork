@@ -1,6 +1,9 @@
 import s from "./UserStatus.module.css"
 import React, {ChangeEvent, useState} from "react"
 import {ProfileType} from "../../../../redux/profileReduser"
+import {StatusForm} from "./StatusForm";
+import {Field, Form} from "react-final-form";
+import {maxLength} from "../../../ValidateForm";
 
 
 type UserStatusPropsType = {
@@ -26,13 +29,13 @@ function UserStatus(props: UserStatusPropsType) {
         if (value.length <= 300) {
             props.updateStatus(value)
             setStatusMod(false)
+        } else {
+            alert('>300 symbols')
         }
-        else {
-            alert ('error length')
-        }
-
     }
-
+    let onSubmit = (value: string) => {
+        console.log(value)
+    }
     return (
         <div className={s.status}>
             {
@@ -40,6 +43,9 @@ function UserStatus(props: UserStatusPropsType) {
                     ? <textarea onBlur={statusOff} className={s.textarea_status}
                                 onChange={onChangeStatus}
                                 placeholder='status' autoFocus value={value}/>
+                    // <div>
+                    //     <StatusForm />
+                    // </div>
                     : <span onDoubleClick={statusOn}
                             className={s.span_status}> {!props.status ? value : props.status} </span>
             }

@@ -1,5 +1,6 @@
 import React from "react"
 import s from "./Users.module.css"
+import '../../../../App.css'
 import noPhoto from "../../../../img/noPhoto.png"
 import {NavLink} from "react-router-dom"
 
@@ -29,10 +30,10 @@ const User: React.FC<UserPropsType> = ({name, followed, follow, unfollow, id, ph
             <div>
                 {followed
                     ? <button disabled={followingInProgress.some(userId => userId === id)}
-                              onClick={() => {unfollow(id)}}>Unfollow</button>
+                              onClick={() => {unfollow(id)}} className='addUserBtn'>Unfollow</button>
 
                     : <button  disabled={followingInProgress.some(userId => userId === id)}
-                               onClick={() =>{follow(id)}}>Follow</button>}
+                               onClick={() =>{follow(id)}} className='addUserBtn'>Follow</button>}
             </div>
         </div>
     )
