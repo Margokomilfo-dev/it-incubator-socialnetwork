@@ -51,6 +51,7 @@ let initialState: ProfilePageType = {
 let profileReduser = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
+            debugger
             return {
                 ...state,
                 posts: [{id: v1(), content: action.value.postText, likesCount: 10}, ...state.posts]

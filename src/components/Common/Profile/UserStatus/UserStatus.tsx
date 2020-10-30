@@ -1,9 +1,6 @@
 import s from "./UserStatus.module.css"
 import React, {ChangeEvent, useState} from "react"
 import {ProfileType} from "../../../../redux/profileReduser"
-import {StatusForm} from "./StatusForm";
-import {Field, Form} from "react-final-form";
-import {maxLength} from "../../../ValidateForm";
 
 
 type UserStatusPropsType = {
@@ -33,9 +30,7 @@ function UserStatus(props: UserStatusPropsType) {
             alert('>300 symbols')
         }
     }
-    let onSubmit = (value: string) => {
-        console.log(value)
-    }
+
     return (
         <div className={s.status}>
             {

@@ -1,8 +1,9 @@
 import s from "./Posts.module.css"
-import React, {ChangeEvent, useState} from "react"
+import React from "react"
 import Post from "./Post/Post"
 import {ProfilePageType} from "../../../../redux/profileReduser"
 import {Field, Form} from "react-final-form";
+import {composeValidators, maxLength, minMaxLength, required} from "../../../ValidateForm"
 
 type PostsPropsType = {
     profilePage: ProfilePageType
@@ -11,24 +12,13 @@ type PostsPropsType = {
 
 export function Posts(props: PostsPropsType) {
 
-    const newPostElement = React.createRef<HTMLTextAreaElement>()
-
-    let onAddPost = (values: FormPropsType): void => {
-        props.addPost(values)
-        console.log(values)
-        //props.addPost(value)
+    const onSubmit = (values: FormValuesType): void => {
+        props.addPost({postText: values.postText})
     }
-    // let onChangeNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    //     setValue(e.currentTarget.value)
-    // }
     return (
         <div className={s.posts}>
             <div className={s.textAreaBlock}>
-                {/*<textarea ref={newPostElement} className={s.textarea_post}*/}
-                {/*          value={value}*/}
-                {/*          onChange={onChangeNewPostText}>New post</textarea>*/}
-                {/*<button className='postBtn' onClick={() => {onAddPost(value)}}>add</button>*/}
-                <AddPostForm addPost={onAddPost}  />
+                <AddPostForm onSubmit={onSubmit}  />
             </div>
             {
                 props.profilePage.posts.map(p => <Post content={p.content} likesCount={p.likesCount} key={p.id}/>)
@@ -37,26 +27,32 @@ export function Posts(props: PostsPropsType) {
     )
 }
 
-type FormPropsType = {
+export type FormValuesType = {
     postText: string
 }
-type AddPostFormPropsType = {
-    addPost: (values: FormPropsType) => void
+type LoginFormPropsType = {
+    onSubmit: (values: FormValuesType) => void
 }
-const AddPostForm = (props: AddPostFormPropsType) => {
+export const AddPostForm = (props: any) => {
     return (
-        <Form  onSubmit={props.addPost}>
-            {({ handleSubmit}) =>  (
-                <form onSubmit={handleSubmit} className={s.postTextarea} >
-                    <div><Field name="postText"
-                                component="textarea"
-                                placeholder="enter your post text"
-                                className={s.textarea_post}
-                    /></div>
-                    <div><button type="submit" className='postBtn'>LogIn</button></div>
+        <Form onSubmit={props.onSubmit}>
+            {({handleSubmit, form, submitting, pristine, values}) => (
+                <form onSubmit={handleSubmit} className={s.postTextarea}>
+                    <div>
+                        <Field name="postText" validate={composeValidators(required, maxLength(300))}>
+                            {
+                                ({input, meta}) => (
+                                    <div>
+                                        <textarea {...input}  placeholder="enter your post text"
+                                               className={s.textarea_post}/>
+                                        {meta.error && meta.touched && <div className={s.error}>{meta.error}</div>}
+                                    </div>
+                                )}
+                        </Field>
+                    </div>
+                        <button type="submit" className='postBtn'>LogIn</button>
                 </form>
             )}
         </Form>
     )
-
 }

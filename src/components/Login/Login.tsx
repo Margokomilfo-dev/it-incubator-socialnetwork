@@ -2,7 +2,6 @@ import React from "react"
 import {Field, Form} from "react-final-form"
 import {FormValuesType, LoginForm} from "./LoginForm"
 import s from './Login.module.css'
-//import {Form, reduxForm, Field} from "redux-form";
 
 type LoginPropsType = {}
 export const Login: React.FC<LoginPropsType> = (props: LoginPropsType) => {
