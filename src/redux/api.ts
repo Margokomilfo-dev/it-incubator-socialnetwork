@@ -11,7 +11,17 @@ let instance = axios.create({
 export const AuthApi = {
     authMe (){
         return instance.get(`auth/me`)
-    }
+    },
+    loginApi (email: string | null, password: string | null, rememberMe: boolean = false, captcha: string | null){
+        return instance.post(`/auth/login`,{email, password, rememberMe, captcha}).then(response => {
+            return response.data
+        })
+    },
+    logOutApi (){
+        return instance.delete(`/auth/login`).then(response => {
+            return response.data
+        })
+    },
 }
 
 export const UsersApi = {

@@ -99,4 +99,5 @@ export const updateStatus = (status: string) => (dispatch: Dispatch<ActionsTypes
 }
 
 
+
 export default profileReduser

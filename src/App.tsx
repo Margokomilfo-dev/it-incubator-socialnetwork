@@ -9,8 +9,8 @@ import ProfileContainer from "./components/Common/Profile/ProfileContainer"
 import StatusContainer from "./components/Status/StatusContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {Store} from "redux";
-import { Login } from './components/Login/Login'
 import {MessagesContainer} from "./components/Common/Sidebar/Messages/MessagesContainer";
+import Login from "./components/Login/Login"
 
 type AppPropsType = {
     store: Store

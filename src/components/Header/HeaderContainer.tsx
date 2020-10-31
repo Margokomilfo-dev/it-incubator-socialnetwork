@@ -2,12 +2,13 @@ import React from "react"
 import Header from "./Header"
 import {connect} from "react-redux"
 import {AllAppTypes} from "../../redux/redux-store"
-import {authMeTC} from "../../redux/authReducer"
+import {authMeTC, logOut} from "../../redux/authReducer"
 
 type HeaderContainerPropsType = {
     isLogin: boolean
     authMeTC: any
     login: string | null
+    logOut: () => void
 }
 
 type MapStateToPropsType = {
@@ -16,18 +17,19 @@ type MapStateToPropsType = {
 }
 type MapDispatchToPropsType = {
     authMeTC: () => void
+    logOut: () => void
 }
 
-const HeaderContainer: React.FC<HeaderContainerPropsType> = ({ isLogin, authMeTC, login}) => {
+const HeaderContainer: React.FC<HeaderContainerPropsType> = ({ isLogin, authMeTC, login, logOut}) => {
     authMeTC()
     return (
-        <Header isLogin={isLogin} login={login}/>
+        <Header isLogin={isLogin} login={login} logOut={logOut}/>
     )
 }
 
-let mapStateToProps = (state: AllAppTypes) => ({
+let mapStateToProps = (state: AllAppTypes): MapStateToPropsType => ({
     isLogin: state.auth.isLogin,
     login: state.auth.login
 })
 
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, { authMeTC})(HeaderContainer)
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, { authMeTC, logOut})(HeaderContainer)

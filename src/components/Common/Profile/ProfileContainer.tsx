@@ -2,8 +2,9 @@ import React, {useEffect} from "react"
 import Profile from "./Profile"
 import {connect} from "react-redux"
 import {getProfileTC, ProfileType, setProfile, getStatus, updateStatus} from "../../../redux/profileReduser"
-import {withRouter, RouteComponentProps} from "react-router-dom"
+import {withRouter, RouteComponentProps, Redirect} from "react-router-dom"
 import {AllAppTypes} from "../../../redux/redux-store"
+import { withLoginRedirect } from "../../../HOC/withLoginRedirect"
 //import {compose} from "redux"
 
 type MapStateToPropsType = {
@@ -31,7 +32,6 @@ let ProfileContainer = (props: PropsType) => {
         props.getStatus(props.profile.userId)
     }
 
-
     return (
         <Profile {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
     )
@@ -39,7 +39,7 @@ let ProfileContainer = (props: PropsType) => {
 
 let mapStateToProps = (state: AllAppTypes): MapStateToPropsType => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
 })
 
 // export default compose (
@@ -47,9 +47,9 @@ let mapStateToProps = (state: AllAppTypes): MapStateToPropsType => ({
 //     connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, {setProfile, getProfileTC}),
 // )(ProfileContainer)
 
-export default withRouter(connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, {
+export default withLoginRedirect(withRouter(connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, {
     setProfile,
     getProfileTC,
     getStatus,
     updateStatus
-})(ProfileContainer))
+})(ProfileContainer)))

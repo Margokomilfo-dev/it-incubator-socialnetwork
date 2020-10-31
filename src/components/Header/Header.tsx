@@ -1,13 +1,15 @@
 import s from "./Header.module.css"
 import logo from "../../img/logo-job.png"
 import React from "react"
-import {NavLink} from "react-router-dom"
+import {NavLink, Redirect} from "react-router-dom"
 
 type HeaderPropsType = {
     isLogin: boolean
     login: string | null
+    logOut: () => void
 }
- const Header: React.FC<HeaderPropsType> = ({isLogin, login}) => {
+
+ const Header: React.FC<HeaderPropsType> = ({isLogin, login, logOut}) => {
     return (
         <div className={s.header}>
             <div className={s.header_logo}>
@@ -29,7 +31,7 @@ type HeaderPropsType = {
                         ?
                         <div className={s.logout}>
                             {isLogin ? login : ''}
-                            <button className='logButton'>
+                            <button className='logButton' onClick={logOut}>
                                 <NavLink to={'/login'}>LogOut</NavLink>
                             </button>
                         </div>

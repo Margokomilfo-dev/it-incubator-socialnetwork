@@ -1,6 +1,8 @@
 import {AuthApi, UsersApi} from "./api";
 import {Dispatch} from "redux";
 import {followSuccess, toggleFollowingInProgress} from "./allUsersReduser";
+import {setStatus} from "./profileReduser";
+import {debuglog} from "util";
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
 
@@ -25,7 +27,7 @@ let authReduser = (state:AuthType = initialState, action: ActionsTypes):AuthType
             return {
                 ...state,
                 ...action.data,
-                isLogin: true
+                isLogin: action.isLogin
             }
         default:
             return state
@@ -34,20 +36,37 @@ let authReduser = (state:AuthType = initialState, action: ActionsTypes):AuthType
 export type ActionsTypes = ReturnType<typeof setUserData>
 
 export type setUserDataActionType = {
-    id: number
-    email: string
-    login: string
+    id: number | null
+    email: string | null
+    login: string | null
 }
-export const setUserData = (data: setUserDataActionType) => ({type: SET_AUTH_USER_DATA, data} as const)
+export const setUserData = (data: setUserDataActionType, isLogin: boolean) => ({type: SET_AUTH_USER_DATA, data, isLogin} as const)
 
 export const authMeTC = () => (dispatch: Dispatch<ActionsTypes>) => {
+    debugger
     AuthApi.authMe().then(response => {
         if (response.data.resultCode === 0) {
-            let {email, id, login} = response.data.data
-            dispatch(setUserData(response.data.data))
+            dispatch(setUserData(response.data.data, true))
         }
     })
 }
+export const login = (email: string | null, password: string | null, rememberMe: boolean = false, captcha: string | null) =>
+    (dispatch: Dispatch<ActionsTypes>) => {
+        AuthApi.loginApi(email, password,rememberMe,captcha).then(response => {
+            if (response.resultCode === 0){
+                AuthApi.authMe()
+                dispatch(setUserData(response.data.data, true))
+            }
+        })
+    }
 
+export const logOut = () =>
+    (dispatch: Dispatch<ActionsTypes>) => {
+        AuthApi.logOutApi().then(response => {
+            if (response.resultCode === 0){
+                dispatch(setUserData({email: null, id: null, login: null}, false))
+            }
+        })
+    }
 
 export default authReduser

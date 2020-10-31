@@ -8,6 +8,7 @@ type MapStateToPropsType = {
     isLogin: boolean
 }
 type MapDispatchToPropsType = {}
+
 type StatusContainerPropsType = {
     isLogin: boolean
 }
@@ -17,7 +18,7 @@ function StatusContainer(props:StatusContainerPropsType) {
         <Status isLogin={props.isLogin}/>
     )
 }
-let mapStateToProps =(state: AllAppTypes) => ({
+let mapStateToProps =(state: AllAppTypes):MapStateToPropsType => ({
     isLogin: state.auth.isLogin
 })
 
