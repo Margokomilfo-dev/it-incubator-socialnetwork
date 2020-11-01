@@ -1,9 +1,8 @@
-import {Field, Form} from "react-final-form";
+import {Field, Form, FormRenderProps} from "react-final-form";
 import '../../App.css'
 import s from './Login.module.css'
 import {composeValidators, maxLength, minMaxLength, required} from "../ValidateForm";
-import React from "react";
-
+import React from "react"
 
 export type FormValuesType = {
     email: string
@@ -12,12 +11,15 @@ export type FormValuesType = {
 }
 type LoginFormPropsType = {
     onSubmit: (values: FormValuesType) => void
+    serverError?: string | null
 }
 export const LoginForm = (props: any) => {
+    let serverError = props.serverError
     return (
-        <Form onSubmit={props.onSubmit}>
-            {({handleSubmit, form, submitting, pristine, values}) => (
-                <form onSubmit={handleSubmit} className={s.loginForm}>
+        <Form onSubmit={props.onSubmit} serverError={props.serverError}>
+            {
+                (props) => (
+                <form onSubmit={props.handleSubmit} className={s.loginForm}>
                     <div>
                         <Field name="email" validate={composeValidators(required, maxLength(30))}>
                             {
@@ -45,9 +47,10 @@ export const LoginForm = (props: any) => {
                     <div className={s.rememberMe}>
                         <Field name="rememberMe" component="input" type="checkbox"/> remember me
                     </div>
+                        {serverError && <div className={s.serverError}> {serverError} </div>}
                     <div className={s.buttons}>
                         <div className={s.button}> <button type="submit" className='logButton'>LogIn</button></div>
-                        <div className={s.button}> <button type="reset" onClick={form.reset} className='logButton'>Reset</button> </div>
+                        <div className={s.button}> <button type="reset" onClick={props.form.reset} className='logButton'>Reset</button> </div>
                     </div>
                 </form>
             )}

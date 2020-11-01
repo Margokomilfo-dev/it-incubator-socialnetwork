@@ -1,5 +1,4 @@
 import React from "react"
-import {Field, Form} from "react-final-form"
 import {FormValuesType, LoginForm} from "./LoginForm"
 import s from './Login.module.css'
 import {connect} from "react-redux";
@@ -9,6 +8,7 @@ import { Redirect } from "react-router-dom";
 
 type MapStateToPropsType = {
     isLogin: boolean
+    serverError: string | null
 }
 type MapDispatchToPropsType = {
     login: (email: string | null, password: string | null, rememberMe: boolean, captcha: string | null) => void
@@ -16,12 +16,17 @@ type MapDispatchToPropsType = {
 type LoginPropsType = {
     login: (email: string | null, password: string | null, rememberMe: boolean, captcha: string | null) => void
     isLogin: boolean
+    serverError: string | null
 }
 
 const Login: React.FC<LoginPropsType> = (props: LoginPropsType) => {
-
+    debugger
     const onSubmit = (values: FormValuesType): void => {
+        if (props.serverError){
+
+        }
         props.login(values.email, values.password, values.rememberMe, null)
+
     }
 
     if (props.isLogin) {
@@ -42,13 +47,14 @@ const Login: React.FC<LoginPropsType> = (props: LoginPropsType) => {
             <div className={s.subTitle}>Please, enter your email and password:</div>
 
             <div>
-                <LoginForm onSubmit={onSubmit}/>
+                <LoginForm onSubmit={onSubmit} serverError={props.serverError}/>
                 {/*<LoginReduxForm onSubmit={onSubmit}/>*/}
             </div>
         </div>
     )
 }
 let mapStateToProps = (state: AllAppTypes):MapStateToPropsType=> ({
-    isLogin: state.auth.isLogin
+    isLogin: state.auth.isLogin,
+    serverError: state.auth.serverError
 })
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, {login})(Login)

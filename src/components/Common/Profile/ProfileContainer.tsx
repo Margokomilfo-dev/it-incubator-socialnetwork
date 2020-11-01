@@ -43,6 +43,7 @@ let mapStateToProps = (state: AllAppTypes): MapStateToPropsType => ({
 })
 
 // export default compose (
+//     withLoginRedirect,
 //     withRouter,
 //     connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, {setProfile, getProfileTC}),
 // )(ProfileContainer)

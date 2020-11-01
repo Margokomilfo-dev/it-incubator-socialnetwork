@@ -37,7 +37,7 @@
     align-items: center;
 }
 .rememberMe {
-    margin: 5px 0 40px 0;
+    margin: 5px 0 20px 0;
 }
 input[type='checkbox'] {}
 
@@ -62,4 +62,14 @@ input[type='checkbox'] {}
     margin: -5px 0 10px 0;
     font-weight: 500;
     text-align: center;
+}
+.serverError {
+    display: flex;
+    justify-content: center;
+    border:3px solid #FEDA75;
+    border-left: none;
+    border-right: none;
+    width: 190%;
+    padding: 10px;
+    margin-bottom: 10px;
 }

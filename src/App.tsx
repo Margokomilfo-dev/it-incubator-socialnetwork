@@ -17,7 +17,6 @@ type AppPropsType = {
 }
 
 function App(props: AppPropsType) {
-    // @ts-ignore
     return (
         <BrowserRouter>
             <div className='app'>
@@ -26,6 +25,7 @@ function App(props: AppPropsType) {
                 <div className={s.common}>
                     <Sidebar/>
                     <div className={s.main}>
+                        <Route exact path={'/'} render={() => <ProfileContainer/>}/>
                         <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
                         <Route path={'/users'} render={() => <UsersContainer />}/>
                         <Route path={'/dialogs'} render={() => <MessagesContainer />}/>
