@@ -14,12 +14,13 @@ type UsersPropsType = {
     setUsersCount: (totalCount: number) => void
     totalCountUsers: number
     followingInProgress: Array<number>
+    isLogin: boolean
 }
 
 
 const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users,
                                              setUsersCount, totalCountUsers,
-                                             followingInProgress}) => {
+                                             followingInProgress, isLogin}) => {
 
 
     let [currentPage, setCurrentPage] = useState<number>(1)
@@ -66,6 +67,7 @@ const Users: React.FC<UsersPropsType> = ({follow, unfollow, setUsers, users,
                                          id={u.id}
                                          photos = {u.photos}
                                          followingInProgress = {followingInProgress}
+                                         isLogin={isLogin}
 
                     />)}
                 </div>

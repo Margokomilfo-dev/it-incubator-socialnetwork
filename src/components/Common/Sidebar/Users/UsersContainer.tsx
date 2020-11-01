@@ -13,6 +13,7 @@ type MapStateToPropsType = {
     users: Array<UserType>
     totalCountUsers: number
     followingInProgress: Array<number>
+    isLogin: boolean
 }
 type MapDispatchToPropsType = {
     follow: (id: number) => void
@@ -21,13 +22,12 @@ type MapDispatchToPropsType = {
     setUsersCount: (totalCount: number) => void
 }
 
-let mapStateToProps = (state: AllAppTypes) => {
-    return ({
-        users: state.allUsers.users,
-        totalCountUsers: state.allUsers.totalCountUsers,
-        followingInProgress: state.allUsers.followingInProgress
-    })
-}
+let mapStateToProps = (state: AllAppTypes) => ({
+    users: state.allUsers.users,
+    totalCountUsers: state.allUsers.totalCountUsers,
+    followingInProgress: state.allUsers.followingInProgress,
+    isLogin: state.auth.isLogin
+})
 
 export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>
 (mapStateToProps, {follow, unfollow, setUsers, setUsersCount})(Users)

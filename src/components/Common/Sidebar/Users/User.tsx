@@ -12,11 +12,14 @@ type UserPropsType = {
     id: number
     photos: any
     followingInProgress: Array<number>
+    isLogin: boolean
 }
-const User: React.FC<UserPropsType> = ({name, followed, follow, unfollow, id, photos,
-                                           followingInProgress}) => {
+const User: React.FC<UserPropsType> = ({
+                                           name, followed, follow, unfollow, id, photos,
+                                           followingInProgress, isLogin
+                                       }) => {
 
-
+    debugger
     return (
         <div className={s.user}>
             <div className={s.photo}>
@@ -28,12 +31,19 @@ const User: React.FC<UserPropsType> = ({name, followed, follow, unfollow, id, ph
             </div>
             <div className={s.name}>{name}</div>
             <div>
-                {followed
-                    ? <button disabled={followingInProgress.some(userId => userId === id)}
-                              onClick={() => {unfollow(id)}} className='addUserBtn'>Unfollow</button>
+                {
+                    isLogin &&
+                    (followed
+                        ? <button disabled={followingInProgress.some(userId => userId === id)}
+                                  onClick={() => {
+                                      unfollow(id)
+                                  }} className='addUserBtn'>Unfollow</button>
 
-                    : <button  disabled={followingInProgress.some(userId => userId === id)}
-                               onClick={() =>{follow(id)}} className='addUserBtn'>Follow</button>}
+                        : <button disabled={followingInProgress.some(userId => userId === id)}
+                                  onClick={() => {
+                                      follow(id)
+                                  }} className='addUserBtn'>Follow</button>
+                    )}
             </div>
         </div>
     )

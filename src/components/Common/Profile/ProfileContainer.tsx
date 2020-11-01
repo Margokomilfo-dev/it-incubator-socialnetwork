@@ -10,6 +10,7 @@ import { withLoginRedirect } from "../../../HOC/withLoginRedirect"
 type MapStateToPropsType = {
     profile: ProfileType | null
     status: string | null
+    authorizedId: number | null
 }
 type MapDispatchToPropsType = {
     setProfile: (profile: ProfileType) => void
@@ -24,14 +25,18 @@ type PropsType = RouteComponentProps<PathPropsType> & MapStateToPropsType & MapD
 let ProfileContainer = (props: PropsType) => {
     let userId = props.match.params.userId
     useEffect(() => {
-        !userId && (userId = '6314')
+        if (!userId) {
+            userId = String(props.authorizedId)
+        }
+        // if (!userId) {
+        //     props.history.push('/login')
+        // }
         props.getProfileTC(userId)
     }, [])
 
     if (props.profile) {
         props.getStatus(props.profile.userId)
     }
-
     return (
         <Profile {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
     )
@@ -40,6 +45,7 @@ let ProfileContainer = (props: PropsType) => {
 let mapStateToProps = (state: AllAppTypes): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
+    authorizedId: state.auth.id
 })
 
 // export default compose (

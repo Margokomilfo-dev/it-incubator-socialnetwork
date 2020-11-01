@@ -50,8 +50,7 @@ export const setUserData = (data: setUserDataActionType, isLogin: boolean) => ({
 export const setError = (error: string) => ({type: SET_ERROR, error} as const)
 
 export const authMeTC = () => (dispatch: Dispatch<ActionsTypes>) => {
-    debugger
-    AuthApi.authMe().then(response => {
+   return AuthApi.authMe().then(response => {
         if (response.data.resultCode === 0) {
             dispatch(setUserData(response.data.data, true))
         }

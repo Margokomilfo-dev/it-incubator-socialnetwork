@@ -26,7 +26,7 @@ export const AuthApi = {
 
 export const UsersApi = {
     getUsers (currentPage: number = 1) {
-        return instance.get(`users?count=24&page=${currentPage}`,).then(response => {
+        return instance.get(`users?count=25&page=${currentPage}`,).then(response => {
             return response.data
         })
     },

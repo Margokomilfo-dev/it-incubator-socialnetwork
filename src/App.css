@@ -44,6 +44,7 @@
     height: 30px;
     border: none;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 .addUserBtn:hover {
     background-color: #FEDA75;
