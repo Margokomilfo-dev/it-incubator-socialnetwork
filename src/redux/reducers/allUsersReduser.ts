@@ -1,4 +1,4 @@
-import {UsersApi} from "./api";
+import {UsersApi} from "../api";
 import {Dispatch} from "redux";
 
 const FOLLOW = 'FOLLOW'
@@ -11,7 +11,6 @@ export type AllUsersPageType = {
     users: Array<UserType>
     totalCountUsers: number
     error: null | string
-    isFetching: boolean,
     followingInProgress: Array<number>
 
 }
@@ -31,7 +30,6 @@ let initialState: AllUsersPageType = {
     users: [] as Array<UserType>,
     totalCountUsers: 0,
     error: null,
-    isFetching: false,
     followingInProgress: []
 }
 

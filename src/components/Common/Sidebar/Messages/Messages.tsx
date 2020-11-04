@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import s from './Messages.module.css'
 import UserDialog from "./UserDialog/UserDialog"
 import Message from "./Message/Message"
-import {messagePageType} from "../../../../redux/messagesReduser"
+import {messagePageType} from "../../../../redux/reducers/messagesReduser"
 import {AddMessageForm, FormPropsType} from "./AddMessageForm"
 
 

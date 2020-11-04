@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {UserType} from "../../../../redux/allUsersReduser"
+import {UserType} from "../../../../redux/reducers/allUsersReduser"
 import s from './Users.module.css'
 import Pagination from "../Pagination/Pagination"
 import User from "./User"

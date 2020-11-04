@@ -1,7 +1,7 @@
 import s from "./Posts.module.css"
 import React from "react"
 import Post from "./Post/Post"
-import {ProfilePageType} from "../../../../redux/profileReduser"
+import {ProfilePageType} from "../../../../redux/reducers/profileReduser"
 import {Field, Form} from "react-final-form";
 import {composeValidators, maxLength, minMaxLength, required} from "../../../ValidateForm"
 

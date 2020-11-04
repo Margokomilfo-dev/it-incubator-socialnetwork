@@ -2,6 +2,7 @@ import React from "react"
 import Status from "./Status";
 import { connect } from "react-redux";
 import {AllAppTypes} from "../../redux/redux-store";
+import {getIsLogin} from "../../redux/selectors";
 
 
 type MapStateToPropsType = {
@@ -19,7 +20,7 @@ function StatusContainer(props:StatusContainerPropsType) {
     )
 }
 let mapStateToProps =(state: AllAppTypes):MapStateToPropsType => ({
-    isLogin: state.auth.isLogin
+    isLogin: getIsLogin(state)
 })
 
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, {})(StatusContainer)

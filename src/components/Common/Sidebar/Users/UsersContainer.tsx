@@ -6,8 +6,9 @@ import {
     setUsersCount,
     unfollow,
     UserType
-} from "../../../../redux/allUsersReduser"
+} from "../../../../redux/reducers/allUsersReduser"
 import {AllAppTypes} from "../../../../redux/redux-store";
+import {getFollowingInProgress, getIsLogin, getTotalUsersCount, getUsers} from "../../../../redux/selectors";
 
 type MapStateToPropsType = {
     users: Array<UserType>
@@ -23,10 +24,10 @@ type MapDispatchToPropsType = {
 }
 
 let mapStateToProps = (state: AllAppTypes) => ({
-    users: state.allUsers.users,
-    totalCountUsers: state.allUsers.totalCountUsers,
-    followingInProgress: state.allUsers.followingInProgress,
-    isLogin: state.auth.isLogin
+    users: getUsers(state),
+    totalCountUsers: getTotalUsersCount(state),
+    followingInProgress: getFollowingInProgress(state),
+    isLogin: getIsLogin(state)
 })
 
 export const UsersContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>

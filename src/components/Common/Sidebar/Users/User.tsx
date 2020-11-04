@@ -18,8 +18,6 @@ const User: React.FC<UserPropsType> = ({
                                            name, followed, follow, unfollow, id, photos,
                                            followingInProgress, isLogin
                                        }) => {
-
-    debugger
     return (
         <div className={s.user}>
             <div className={s.photo}>

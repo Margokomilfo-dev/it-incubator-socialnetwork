@@ -13,7 +13,7 @@ import {MessagesContainer} from "./components/Common/Sidebar/Messages/MessagesCo
 import Login from "./components/Login/Login"
 import {connect, MapStateToProps} from "react-redux";
 import {AllAppTypes} from "./redux/redux-store";
-import {initializedApp, initializedAppAC} from "./redux/appReducer";
+import {initializedApp, initializedAppAC} from "./redux/reducers/appReducer";
 import Preloader from "./components/Common/Preloader/Preloader";
 
 

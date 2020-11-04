@@ -1,8 +1,9 @@
-import {addMessage, messagePageType} from "../../../../redux/messagesReduser"
+import {addMessage, messagePageType} from "../../../../redux/reducers/messagesReduser"
 import Messages from "./Messages"
 import {connect} from "react-redux"
 import {AllAppTypes} from "../../../../redux/redux-store"
 import {withLoginRedirect} from "../../../../HOC/withLoginRedirect"
+import {getIsFetching, getIsLogin, getMessagePageReducer} from "../../../../redux/selectors";
 //import {compose} from "redux"
 
 type MapStateToPropsType = {
@@ -15,8 +16,8 @@ type MapDispatchToPropsType = {
 
 let mapStateToProps = (state: AllAppTypes): MapStateToPropsType => {
     return {
-        messagePage: state.messagePage,
-        isLogin: state.auth.isLogin
+        messagePage: getMessagePageReducer(state),
+        isLogin: getIsLogin(state)
     }
 }
 

@@ -1,10 +1,10 @@
 import {combineReducers, createStore, Store, applyMiddleware} from "redux"
-import profileReduser from "./profileReduser"
-import messagesReduser from "./messagesReduser"
-import allUsersReduser from "./allUsersReduser"
-import authReduser from "./authReducer"
+import profileReduser from "./reducers/profileReduser"
+import messagesReduser from "./reducers/messagesReduser"
+import allUsersReduser from "./reducers/allUsersReduser"
+import authReduser from "./reducers/authReducer"
 import thunkMiddleWare from 'redux-thunk'
-import appReducer from "./appReducer";
+import appReducer from "./reducers/appReducer";
 //import {reducer as formReducer } from 'redux-form'
 
 let reducers = combineReducers({
@@ -18,6 +18,7 @@ let reducers = combineReducers({
 let store: Store = createStore(reducers, applyMiddleware(thunkMiddleWare))
 
 export type AllAppTypes = ReturnType<typeof reducers>
+
 // @ts-ignore
 window.store = store
 

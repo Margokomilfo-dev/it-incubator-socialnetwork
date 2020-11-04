@@ -2,7 +2,8 @@ import React from "react"
 import Header from "./Header"
 import {connect} from "react-redux"
 import {AllAppTypes} from "../../redux/redux-store"
-import {authMeTC, logOut} from "../../redux/authReducer"
+import {authMeTC, logOut} from "../../redux/reducers/authReducer"
+import {getIsLogin, getLogin} from "../../redux/selectors";
 
 type HeaderContainerPropsType = {
     isLogin: boolean
@@ -28,8 +29,8 @@ const HeaderContainer: React.FC<HeaderContainerPropsType> = ({ isLogin, authMeTC
 }
 
 let mapStateToProps = (state: AllAppTypes): MapStateToPropsType => ({
-    isLogin: state.auth.isLogin,
-    login: state.auth.login
+    isLogin: getIsLogin(state),
+    login: getLogin(state)
 })
 
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AllAppTypes>(mapStateToProps, { authMeTC, logOut})(HeaderContainer)

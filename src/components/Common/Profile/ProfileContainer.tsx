@@ -1,10 +1,11 @@
 import React, {useEffect} from "react"
 import Profile from "./Profile"
 import {connect} from "react-redux"
-import {getProfileTC, ProfileType, setProfile, getStatus, updateStatus} from "../../../redux/profileReduser"
+import {getProfileTC, ProfileType, setProfile, getStatus, updateStatus} from "../../../redux/reducers/profileReduser"
 import {withRouter, RouteComponentProps, Redirect} from "react-router-dom"
 import {AllAppTypes} from "../../../redux/redux-store"
 import { withLoginRedirect } from "../../../HOC/withLoginRedirect"
+import {getProfile, getId, getUserStatus} from "../../../redux/selectors";
 //import {compose} from "redux"
 
 type MapStateToPropsType = {
@@ -43,9 +44,9 @@ let ProfileContainer = (props: PropsType) => {
 }
 
 let mapStateToProps = (state: AllAppTypes): MapStateToPropsType => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    authorizedId: state.auth.id
+    profile: getProfile(state),
+    status: getUserStatus(state),
+    authorizedId: getId(state)
 })
 
 // export default compose (

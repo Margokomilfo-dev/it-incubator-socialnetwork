@@ -1,6 +1,6 @@
 import s from "./AboutMe.module.css"
 import React from "react"
-import {ProfileType} from "../../../../redux/profileReduser";
+import {ProfileType} from "../../../../redux/reducers/profileReduser";
 
 type AboutMePropsType = {
     profile: ProfileType

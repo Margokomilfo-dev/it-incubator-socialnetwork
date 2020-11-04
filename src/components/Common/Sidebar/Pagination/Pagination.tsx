@@ -1,4 +1,4 @@
-import {UserType} from "../../../../redux/allUsersReduser"
+import {UserType} from "../../../../redux/reducers/allUsersReduser"
 import React, {useState} from "react"
 import s from "../Users/Users.module.css"
 import {UsersApi} from "../../../../redux/api";
