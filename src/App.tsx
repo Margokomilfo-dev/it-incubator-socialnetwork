@@ -28,6 +28,7 @@ type AppPropsType = {
 }
 
 function App(props: AppPropsType & MapStateToPropsType & MapDispatchToPropsType) {
+    //dvdfv
     useEffect(()=>{
         props.initializedAppAC()
     },[props.initializedSuccess])
