@@ -1,4 +1,5 @@
 {
+  "homepage":"https://margokomilfo-dev.github.io/it-incubator-socialnetwork/",
   "name": "my-social-network",
   "version": "0.1.0",
   "private": true,
@@ -15,6 +16,7 @@
     "@types/uuid": "^8.3.0",
     "axios": "^0.20.0",
     "final-form": "^4.20.1",
+    "gh-pages": "^3.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-final-form": "^6.5.2",
@@ -30,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

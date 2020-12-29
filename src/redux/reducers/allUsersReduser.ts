@@ -11,6 +11,7 @@ export type AllUsersPageType = {
     users: Array<UserType>
     totalCountUsers: number
     error: null | string
+
     followingInProgress: Array<number>
 
 }

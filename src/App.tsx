@@ -6,15 +6,15 @@ import Sidebar from "./components/Common/Sidebar/Sidebar"
 import About from "./components/Common/Sidebar/About/About"
 import { UsersContainer } from './components/Common/Sidebar/Users/UsersContainer'
 import ProfileContainer from "./components/Common/Profile/ProfileContainer"
-import StatusContainer from "./components/Status/StatusContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import {Store} from "redux";
-import {MessagesContainer} from "./components/Common/Sidebar/Messages/MessagesContainer";
+import StatusContainer from "./components/Status/StatusContainer"
+import HeaderContainer from "./components/Header/HeaderContainer"
+import {Store} from "redux"
+import {MessagesContainer} from "./components/Common/Sidebar/Messages/MessagesContainer"
 import Login from "./components/Login/Login"
-import {connect, MapStateToProps} from "react-redux";
-import {AllAppTypes} from "./redux/redux-store";
-import {initializedApp, initializedAppAC} from "./redux/reducers/appReducer";
-import Preloader from "./components/Common/Preloader/Preloader";
+import {connect} from "react-redux"
+import {AllAppTypes} from "./redux/redux-store"
+import {initializedAppAC} from "./redux/reducers/appReducer"
+import Preloader from "./components/Common/Preloader/Preloader"
 
 
 type MapStateToPropsType = {
